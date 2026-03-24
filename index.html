@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LeadLock — Lock in every lead. Rank on every search.</title>
+  <meta name="description" content="LeadLock helps local businesses get found on Google, generate more reviews, and never miss a customer call. Serving Providence RI and Hartford CT." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            teal:  '#028090',
+            navy:  '#1A2332',
+            mint:  '#02C39A',
+            chalk: '#F4F7F9',
+            'teal-dark': '#016f7c',
+            'mint-dark': '#01a882',
+            'navy-light': '#243143',
+          },
+          fontFamily: {
+            heading: ['Outfit', 'sans-serif'],
+            body:    ['Work Sans', 'sans-serif'],
+          },
+          animation: {
+            'fade-up':   'fadeUp 0.6s ease both',
+            'fade-in':   'fadeIn 0.5s ease both',
+            'pulse-slow': 'pulse 3s ease-in-out infinite',
+          },
+          keyframes: {
+            fadeUp:  { from: { opacity: '0', transform: 'translateY(24px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+            fadeIn:  { from: { opacity: '0' }, to: { opacity: '1' } },
+          },
+        },
+      },
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-family: 'Work Sans', sans-serif; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; }
+
+    /* Scroll-based reveal */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* Gradient text */
+    .grad-text {
+      background: linear-gradient(135deg, #02C39A 0%, #028090 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Gradient border cards */
+    .grad-border {
+      position: relative;
+      background: #fff;
+      border-radius: 16px;
+    }
+    .grad-border::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1.5px;
+      background: linear-gradient(135deg, #02C39A, #028090);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+    }
+
+    /* Phone mockup */
+    .phone-frame {
+      background: #1A2332;
+      border-radius: 36px;
+      border: 3px solid #364256;
+      box-shadow: 0 32px 64px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      position: relative;
+    }
+    .phone-frame::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #364256;
+      border-radius: 2px;
+    }
+
+    /* Strikethrough pricing */
+    .line-through-red {
+      text-decoration: line-through;
+      text-decoration-color: #ef4444;
+      text-decoration-thickness: 2px;
+      opacity: 0.6;
+    }
+
+    /* Timeline connector */
+    .timeline-line {
+      position: absolute;
+      left: 20px;
+      top: 40px;
+      bottom: -24px;
+      width: 2px;
+      background: linear-gradient(180deg, #02C39A, #028090);
+    }
+
+    /* Sticky header blur */
+    .header-glass {
+      background: rgba(26, 35, 50, 0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* FAQ accordion */
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-answer.open {
+      max-height: 400px;
+    }
+    .faq-icon {
+      transition: transform 0.3s ease;
+    }
+    .faq-icon.rotated {
+      transform: rotate(45deg);
+    }
+
+    /* Stat number gradient */
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1;
+      background: linear-gradient(135deg, #02C39A, #028090);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal, .reveal.visible { transition: none; opacity: 1; transform: none; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+
+<body class="bg-chalk text-navy antialiased">
+
+<!-- ═══════════════════════════════════════════════
+     STICKY HEADER
+═══════════════════════════════════════════════ -->
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 header-glass">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 group" aria-label="LeadLock home">
+      <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0">
+        <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </div>
+      <span class="font-heading font-700 text-lg text-white tracking-tight">Lead<span class="text-mint">Lock</span></span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+      <a href="#services" class="text-sm text-white/70 hover:text-mint transition-colors duration-200 cursor-pointer">Services</a>
+      <a href="#how-it-works" class="text-sm text-white/70 hover:text-mint transition-colors duration-200 cursor-pointer">How It Works</a>
+      <a href="#pricing" class="text-sm text-white/70 hover:text-mint transition-colors duration-200 cursor-pointer">Pricing</a>
+      <a href="#faq" class="text-sm text-white/70 hover:text-mint transition-colors duration-200 cursor-pointer">FAQ</a>
+    </nav>
+
+    <!-- CTA -->
+    <a href="#contact" class="inline-flex items-center gap-2 bg-mint hover:bg-mint-dark text-navy font-heading font-600 text-sm px-4 py-2 rounded-lg transition-colors duration-200 cursor-pointer">
+      Get Free Audit
+      <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+  </div>
+</header>
+
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="relative bg-navy overflow-hidden pt-16">
+  <!-- Background grid -->
+  <div class="absolute inset-0 opacity-5" aria-hidden="true"
+       style="background-image: linear-gradient(rgba(2,195,154,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(2,195,154,0.4) 1px, transparent 1px); background-size: 40px 40px;">
+  </div>
+  <!-- Glow -->
+  <div class="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] rounded-full opacity-10"
+       style="background: radial-gradient(ellipse, #02C39A 0%, transparent 70%);" aria-hidden="true"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-36 text-center">
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 bg-white/8 border border-white/10 text-mint text-xs font-body font-500 px-3 py-1.5 rounded-full mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-mint animate-pulse-slow inline-block"></span>
+        Serving Providence RI &amp; Hartford CT
+      </span>
+    </div>
+
+    <h1 class="reveal reveal-delay-1 font-heading font-900 text-white leading-tight tracking-tight mb-6"
+        style="font-size: clamp(2.4rem, 6vw, 5rem); letter-spacing: -0.03em;">
+      Your customers are searching.<br class="hidden sm:block" />
+      <span class="grad-text">Are they finding you?</span>
+    </h1>
+
+    <p class="reveal reveal-delay-2 font-body text-white/60 max-w-2xl mx-auto mb-10 leading-relaxed"
+       style="font-size: clamp(1rem, 2vw, 1.2rem);">
+      LeadLock helps auto shops, barbers, landscapers, plumbers, and pet groomers dominate Google search, flood their inbox with 5-star reviews, and never lose another customer to a missed call.
+    </p>
+
+    <div class="reveal reveal-delay-3 flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="#contact" class="inline-flex items-center gap-2 bg-mint hover:bg-mint-dark text-navy font-heading font-700 px-8 py-4 rounded-xl text-base transition-all duration-200 cursor-pointer shadow-lg hover:shadow-mint/30 hover:-translate-y-0.5"
+         style="box-shadow: 0 0 0 0 rgba(2,195,154,0);"
+         onmouseover="this.style.boxShadow='0 8px 32px rgba(2,195,154,0.35)'"
+         onmouseout="this.style.boxShadow='0 0 0 0 rgba(2,195,154,0)'">
+        Get your free Google audit
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </a>
+      <a href="#services" class="inline-flex items-center gap-2 text-white/70 hover:text-white font-body text-sm transition-colors duration-200 cursor-pointer">
+        See how it works
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 9l-7 7-7-7"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Tagline badge -->
+    <p class="reveal reveal-delay-4 mt-14 font-heading font-600 text-white/25 text-sm tracking-widest uppercase">
+      Lock in every lead. Rank on every search.
+    </p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PROBLEM STATS
+═══════════════════════════════════════════════ -->
+<section id="stats" class="bg-chalk py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-14">
+      <h2 class="font-heading font-800 text-navy mb-3" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        The numbers don't lie
+      </h2>
+      <p class="font-body text-navy/55 max-w-xl mx-auto">Your competitors are already showing up. Here's what's at stake every day you wait.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Stat 1 -->
+      <div class="reveal reveal-delay-1 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
+        <div class="stat-number mb-3">87%</div>
+        <p class="font-heading font-700 text-navy text-lg mb-2">Use Google to find local businesses</p>
+        <p class="font-body text-navy/55 text-sm leading-relaxed">If you're not ranking, you're invisible to nearly 9 out of 10 potential customers in your area.</p>
+      </div>
+      <!-- Stat 2 -->
+      <div class="reveal reveal-delay-2 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
+        <div class="stat-number mb-3">62%</div>
+        <p class="font-heading font-700 text-navy text-lg mb-2">Of calls to local businesses go unanswered</p>
+        <p class="font-body text-navy/55 text-sm leading-relaxed">More than half your phone leads hang up and call your competitor — and you never even know it happened.</p>
+      </div>
+      <!-- Stat 3 -->
+      <div class="reveal reveal-delay-3 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
+        <div class="stat-number mb-3">5 min</div>
+        <p class="font-heading font-700 text-navy text-lg mb-2">Before a lead goes cold</p>
+        <p class="font-body text-navy/55 text-sm leading-relaxed">Response time is everything. After 5 minutes, your odds of converting that lead drop by over 80%.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════ -->
+<section id="services" class="bg-navy py-20 md:py-28 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-4" aria-hidden="true"
+       style="background-image: radial-gradient(circle at 20% 80%, rgba(2,195,154,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(2,128,144,0.1) 0%, transparent 50%);">
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-16">
+      <span class="font-body text-mint font-500 text-sm tracking-widest uppercase mb-3 block">What We Do</span>
+      <h2 class="font-heading font-800 text-white mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        Two weapons. One result.
+      </h2>
+      <p class="font-body text-white/55 max-w-xl mx-auto">More visibility. More calls answered. More revenue — automatically.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+
+      <!-- GBP Optimization -->
+      <div class="reveal reveal-delay-1 rounded-2xl p-8 md:p-10"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint to-teal flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+          </svg>
+        </div>
+        <h3 class="font-heading font-700 text-white text-2xl mb-2">Google Business Profile Optimization</h3>
+        <p class="font-body text-white/50 text-sm mb-8 leading-relaxed">We turn your Google listing into a lead machine — showing up first, looking credible, and converting searchers into calls.</p>
+
+        <ul class="space-y-4" aria-label="GBP optimization features">
+          <!-- Check item template -->
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Profile audit</strong> — We fix every gap, missing category, and outdated detail</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Keyword-rich description</strong> — Written to rank for what your customers actually search</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Photo strategy</strong> — High-quality images that build trust before a customer calls</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Review generation</strong> — A hands-off system that gets happy customers to leave 5-star reviews</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Weekly posts</strong> — Fresh Google updates that signal activity and boost local ranking</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <span class="font-body text-white/75 text-sm leading-relaxed"><strong class="text-white font-600">Competitor analysis</strong> — We watch what's working for your rivals and out-rank them</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Missed Call Text-Back -->
+      <div class="reveal reveal-delay-2 rounded-2xl p-8 md:p-10"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint to-teal flex items-center justify-center mb-6">
+          <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16z"/><path d="M14.05 2a9 9 0 0 1 8 7.94"/>
+          </svg>
+        </div>
+        <h3 class="font-heading font-700 text-white text-2xl mb-2">Missed Call Text-Back</h3>
+        <p class="font-body text-white/50 text-sm mb-8 leading-relaxed">When you can't answer, we answer for you — instantly. A smart text goes out in seconds so the lead never goes cold.</p>
+
+        <!-- Flow diagram -->
+        <div class="flex items-center gap-3 mb-8 flex-wrap">
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center gap-1 text-center">
+            <div class="w-10 h-10 rounded-xl bg-red-500/15 border border-red-500/30 flex items-center justify-center">
+              <svg class="w-5 h-5 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72"/><line x1="1" y1="1" x2="23" y2="23"/>
+              </svg>
+            </div>
+            <span class="font-body text-white/50 text-xs">Missed<br/>call</span>
+          </div>
+          <svg class="w-4 h-4 text-white/25 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center gap-1 text-center">
+            <div class="w-10 h-10 rounded-xl bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-5 h-5 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <span class="font-body text-white/50 text-xs">Instant<br/>text</span>
+          </div>
+          <svg class="w-4 h-4 text-white/25 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center gap-1 text-center">
+            <div class="w-10 h-10 rounded-xl bg-teal/20 border border-teal/30 flex items-center justify-center">
+              <svg class="w-5 h-5 text-teal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 12h8M8 8h4"/>
+              </svg>
+            </div>
+            <span class="font-body text-white/50 text-xs">Customer<br/>responds</span>
+          </div>
+          <svg class="w-4 h-4 text-white/25 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <!-- Step 4 -->
+          <div class="flex flex-col items-center gap-1 text-center">
+            <div class="w-10 h-10 rounded-xl bg-mint/15 border border-mint/30 flex items-center justify-center">
+              <svg class="w-5 h-5 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+            </div>
+            <span class="font-body text-white/50 text-xs">Lead<br/>saved</span>
+          </div>
+        </div>
+
+        <!-- Phone mockup -->
+        <div class="flex justify-center">
+          <div class="phone-frame w-52 px-3 pt-8 pb-6" role="img" aria-label="Phone showing missed call text-back conversation">
+            <div class="space-y-3">
+              <!-- Missed call notification -->
+              <div class="rounded-xl p-3 text-xs" style="background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.2);">
+                <div class="flex items-center gap-2 mb-1">
+                  <svg class="w-3 h-3 text-red-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+                  <span class="text-red-400 font-600 font-heading">Missed call</span>
+                </div>
+                <span class="text-white/50 font-body">Customer: (401) 555-0198</span>
+              </div>
+              <!-- Outgoing text -->
+              <div class="rounded-xl rounded-br-sm p-3 text-xs ml-4" style="background: linear-gradient(135deg, #02C39A, #028090);">
+                <p class="text-white font-body leading-relaxed">Hi! You just called Mike's Auto. We're with a customer — can we text you back? What can we help with?</p>
+                <span class="text-white/60 text-xs mt-1 block">12:47 PM · Delivered</span>
+              </div>
+              <!-- Incoming reply -->
+              <div class="rounded-xl rounded-bl-sm p-3 text-xs mr-4" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.08);">
+                <p class="text-white/80 font-body leading-relaxed">Yes! Need an oil change — when's your next opening?</p>
+                <span class="text-white/40 text-xs mt-1 block">12:49 PM</span>
+              </div>
+              <!-- Lead saved badge -->
+              <div class="flex items-center justify-center gap-1.5 py-1">
+                <svg class="w-3 h-3 text-mint" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+                <span class="text-mint text-xs font-heading font-600">Lead saved</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     BEFORE / AFTER
+═══════════════════════════════════════════════ -->
+<section id="before-after" class="bg-chalk py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-14">
+      <span class="font-body text-teal font-500 text-sm tracking-widest uppercase mb-3 block">The Difference</span>
+      <h2 class="font-heading font-800 text-navy mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        What your Google listing says about you
+      </h2>
+      <p class="font-body text-navy/55 max-w-xl mx-auto">Customers judge your business before they ever call. Here's what they see — and what they should see.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Before -->
+      <div class="reveal reveal-delay-1 rounded-2xl p-8 border-2 border-red-200/60 bg-red-50/40">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <h3 class="font-heading font-700 text-red-700 text-lg">Without LeadLock</h3>
+        </div>
+        <ul class="space-y-4" aria-label="Problems without LeadLock">
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-red-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            <span class="font-body text-navy/70 text-sm leading-relaxed">No description — just a name and a phone number, nothing to make them choose you</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-red-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            <span class="font-body text-navy/70 text-sm leading-relaxed">3 reviews from 4 years ago — and one of them is 2 stars</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-red-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            <span class="font-body text-navy/70 text-sm leading-relaxed">Stock photo or no photos — customers can't see your work or your shop</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-red-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            <span class="font-body text-navy/70 text-sm leading-relaxed">Buried on page 2 or 3 of the local pack — your competitors are taking your calls</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-red-400 mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            <span class="font-body text-navy/70 text-sm leading-relaxed">No posts, no updates, no activity — Google treats you like you're barely open</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- After -->
+      <div class="reveal reveal-delay-2 rounded-2xl p-8 border-2 border-mint/30 bg-mint/5">
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-8 h-8 rounded-full bg-mint/15 flex items-center justify-center flex-shrink-0">
+            <svg class="w-4 h-4 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+          <h3 class="font-heading font-700 text-teal-dark text-lg">With LeadLock</h3>
+        </div>
+        <ul class="space-y-4" aria-label="Benefits with LeadLock">
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-mint mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="font-body text-navy/75 text-sm leading-relaxed">Compelling keyword-optimized description that tells customers exactly why to choose you</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-mint mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="font-body text-navy/75 text-sm leading-relaxed">50+ fresh 5-star reviews that build trust and push you to the top of the local pack</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-mint mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="font-body text-navy/75 text-sm leading-relaxed">A professional photo gallery showing your work, your team, and your space</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-mint mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="font-body text-navy/75 text-sm leading-relaxed">Top 3 in Google's local pack — the first thing customers see when they search</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <svg class="w-4 h-4 text-mint mt-1 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+            <span class="font-body text-navy/75 text-sm leading-relaxed">Weekly posts keep your profile active — Google rewards you with higher placement</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════ -->
+<section id="how-it-works" class="bg-navy py-20 md:py-28 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5" aria-hidden="true"
+       style="background-image: radial-gradient(circle at 80% 20%, rgba(2,195,154,0.15) 0%, transparent 50%);">
+  </div>
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-16">
+      <span class="font-body text-mint font-500 text-sm tracking-widest uppercase mb-3 block">The Timeline</span>
+      <h2 class="font-heading font-800 text-white mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        From signup to results in 30 days
+      </h2>
+      <p class="font-body text-white/55 max-w-lg mx-auto">No long onboarding. No waiting 6 months to see results. Here's exactly what happens.</p>
+    </div>
+
+    <div class="space-y-0">
+      <!-- Step 1 -->
+      <div class="reveal reveal-delay-1 relative flex gap-6 pb-10">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0 z-10 font-heading font-800 text-white text-sm">1</div>
+          <div class="w-0.5 flex-1 mt-2" style="background: linear-gradient(180deg, #02C39A, rgba(2,128,144,0.2));"></div>
+        </div>
+        <div class="pt-1.5 pb-6">
+          <span class="font-body text-mint text-xs font-600 tracking-wider uppercase">Week 1</span>
+          <h3 class="font-heading font-700 text-white text-xl mt-1 mb-2">Profile Overhaul</h3>
+          <p class="font-body text-white/55 text-sm leading-relaxed max-w-lg">We audit everything — categories, description, hours, photos, service areas. Then we rebuild it from the ground up to rank for the searches that matter most to your business.</p>
+        </div>
+      </div>
+      <!-- Step 2 -->
+      <div class="reveal reveal-delay-2 relative flex gap-6 pb-10">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0 z-10 font-heading font-800 text-white text-sm">2</div>
+          <div class="w-0.5 flex-1 mt-2" style="background: linear-gradient(180deg, #028090, rgba(2,128,144,0.2));"></div>
+        </div>
+        <div class="pt-1.5 pb-6">
+          <span class="font-body text-mint text-xs font-600 tracking-wider uppercase">Week 2</span>
+          <h3 class="font-heading font-700 text-white text-xl mt-1 mb-2">Text-Back Goes Live</h3>
+          <p class="font-body text-white/55 text-sm leading-relaxed max-w-lg">Your missed call text-back system is set up, tested, and activated. Every missed call now gets an instant, professional response — capturing leads you used to lose.</p>
+        </div>
+      </div>
+      <!-- Step 3 -->
+      <div class="reveal reveal-delay-3 relative flex gap-6 pb-10">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0 z-10 font-heading font-800 text-white text-sm">3</div>
+          <div class="w-0.5 flex-1 mt-2" style="background: linear-gradient(180deg, #028090, rgba(2,128,144,0.2));"></div>
+        </div>
+        <div class="pt-1.5 pb-6">
+          <span class="font-body text-mint text-xs font-600 tracking-wider uppercase">Week 3</span>
+          <h3 class="font-heading font-700 text-white text-xl mt-1 mb-2">Reviews Start Flowing</h3>
+          <p class="font-body text-white/55 text-sm leading-relaxed max-w-lg">Your review generation system kicks in. Happy customers get a simple, frictionless request. You watch your star rating climb and your Google ranking rise with it.</p>
+        </div>
+      </div>
+      <!-- Step 4 -->
+      <div class="reveal reveal-delay-4 relative flex gap-6">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-full bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0 z-10 font-heading font-800 text-white text-sm">4</div>
+        </div>
+        <div class="pt-1.5">
+          <span class="font-body text-mint text-xs font-600 tracking-wider uppercase">Week 4</span>
+          <h3 class="font-heading font-700 text-white text-xl mt-1 mb-2">Results Review</h3>
+          <p class="font-body text-white/55 text-sm leading-relaxed max-w-lg">We walk you through exactly what changed: ranking position, profile views, call volume, and leads captured. Then we fine-tune for month two.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════════ -->
+<section id="pricing" class="bg-chalk py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-12">
+      <span class="font-body text-teal font-500 text-sm tracking-widest uppercase mb-3 block">Simple Pricing</span>
+      <h2 class="font-heading font-800 text-navy mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        One flat price. No surprises.
+      </h2>
+      <p class="font-body text-navy/55 max-w-xl mx-auto">Everything you need to dominate local search — for less than you'd spend on just one piece of the puzzle elsewhere.</p>
+    </div>
+
+    <!-- Pricing card -->
+    <div class="reveal reveal-delay-1 rounded-2xl overflow-hidden shadow-2xl" style="background: linear-gradient(135deg, #1A2332 0%, #243143 100%);">
+      <!-- Header -->
+      <div class="p-8 md:p-10 border-b border-white/8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <p class="font-body text-mint font-600 text-sm mb-2">Local Visibility Package</p>
+            <div class="flex items-baseline gap-2">
+              <span class="font-heading font-900 text-white" style="font-size: clamp(3rem, 8vw, 5rem); letter-spacing: -0.04em;">$200</span>
+              <span class="font-body text-white/40 text-lg">/month</span>
+            </div>
+          </div>
+          <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-mint hover:bg-mint-dark text-navy font-heading font-700 px-7 py-3.5 rounded-xl transition-colors duration-200 cursor-pointer text-sm whitespace-nowrap">
+            Get started
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Includes -->
+      <div class="p-8 md:p-10 grid grid-cols-1 sm:grid-cols-2 gap-3 border-b border-white/8">
+        <p class="col-span-full font-body text-white/40 text-xs uppercase tracking-wider mb-2">Everything included:</p>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Google Business Profile optimization</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Missed call text-back system</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Automated review generation</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Weekly profile posts</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Monthly performance report</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-4 h-4 text-mint flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+          <span class="font-body text-white/75 text-sm">Competitor monitoring</span>
+        </div>
+      </div>
+
+      <!-- Replaces -->
+      <div class="p-8 md:p-10">
+        <p class="font-body text-white/40 text-xs uppercase tracking-wider mb-5">Replaces what others charge:</p>
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="font-body text-white/50 text-sm line-through-red">Local SEO agency</span>
+            <span class="font-heading font-700 text-white/30 text-sm line-through-red">$500 – $2,000/mo</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-body text-white/50 text-sm line-through-red">Reputation management software</span>
+            <span class="font-heading font-700 text-white/30 text-sm line-through-red">$100 – $300/mo</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="font-body text-white/50 text-sm line-through-red">Answering service</span>
+            <span class="font-heading font-700 text-white/30 text-sm line-through-red">$200 – $500/mo</span>
+          </div>
+          <div class="border-t border-white/8 pt-4 flex items-center justify-between">
+            <span class="font-heading font-700 text-white text-sm">You pay with LeadLock</span>
+            <span class="font-heading font-800 text-mint text-xl">$200/mo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="reveal text-center font-body text-navy/45 text-xs mt-6">No setup fees. No contracts. Cancel anytime.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     INDUSTRIES
+═══════════════════════════════════════════════ -->
+<section id="industries" class="bg-navy py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-14">
+      <span class="font-body text-mint font-500 text-sm tracking-widest uppercase mb-3 block">Who We Serve</span>
+      <h2 class="font-heading font-800 text-white mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        Built for local businesses
+      </h2>
+      <p class="font-body text-white/55 max-w-xl mx-auto">If you depend on local customers finding you, we can help you rank higher and convert more.</p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+      <!-- Auto Repair -->
+      <div class="reveal reveal-delay-1 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200 group"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="1" y="3" width="15" height="13" rx="2"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Auto Repair</p>
+      </div>
+      <!-- HVAC -->
+      <div class="reveal reveal-delay-2 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="4"/><path d="M6.34 6.34l11.32 11.32M17.66 6.34L6.34 17.66"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">HVAC</p>
+      </div>
+      <!-- Landscaping -->
+      <div class="reveal reveal-delay-3 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22V12m0 0C12 7 7 4 2 6c2 2 4 6 10 6zm0 0c0-5 5-8 10-6-2 2-4 6-10 6z"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Landscaping</p>
+      </div>
+      <!-- Barbers -->
+      <div class="reveal reveal-delay-4 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 2v20M18 2v20M6 7h12M6 12h12M6 17h12"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Barbers</p>
+      </div>
+      <!-- Pet Groomers -->
+      <div class="reveal reveal-delay-1 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.96-1.45-2.344-2.5M8 14v.5A3.5 3.5 0 0011.5 18h1a3.5 3.5 0 003.5-3.5V14M8 14c-2 0-4 1-4 3v1h16v-1c0-2-2-3-4-3M8 14h8"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Pet Groomers</p>
+      </div>
+      <!-- Dentists -->
+      <div class="reveal reveal-delay-2 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 5.5C12 4.119 10.881 3 9.5 3S7 4.119 7 5.5c0 1.243.863 2.28 2.019 2.45L8.5 21h3L11 7.95C12.137 7.78 13 6.743 13 5.5z"/><path d="M12 5.5C12 4.119 13.119 3 14.5 3S16 4.119 16 5.5c0 1.243-.863 2.28-2.019 2.45L14.5 21h-3L12 7.95"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Dentists</p>
+      </div>
+      <!-- Cleaning -->
+      <div class="reveal reveal-delay-3 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Cleaning</p>
+      </div>
+      <!-- Restaurants -->
+      <div class="reveal reveal-delay-4 rounded-2xl p-6 text-center cursor-default hover:-translate-y-1 transition-all duration-200"
+           style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);"
+           onmouseover="this.style.borderColor='rgba(2,195,154,0.3)'; this.style.background='rgba(2,195,154,0.06)'"
+           onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'; this.style.background='rgba(255,255,255,0.04)'">
+        <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-mint/20 to-teal/20 flex items-center justify-center mx-auto mb-3">
+          <svg class="w-6 h-6 text-mint" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/>
+          </svg>
+        </div>
+        <p class="font-heading font-600 text-white text-sm">Restaurants</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FAQ
+═══════════════════════════════════════════════ -->
+<section id="faq" class="bg-chalk py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-14">
+      <span class="font-body text-teal font-500 text-sm tracking-widest uppercase mb-3 block">FAQ</span>
+      <h2 class="font-heading font-800 text-navy mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        Questions we always get
+      </h2>
+    </div>
+
+    <div class="space-y-3" id="faq-container">
+      <!-- Q1 -->
+      <div class="reveal faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">Do I need to give you access to my Google account?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">Yes — we'll need manager-level access to your Google Business Profile to make changes. We walk you through the exact steps to add us, and you can remove access anytime. We never have access to your Google account password.</p>
+        </div>
+      </div>
+      <!-- Q2 -->
+      <div class="reveal reveal-delay-1 faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">How quickly will I see results?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">The missed call text-back goes live in week 2, so you'll start capturing leads immediately. Google ranking improvements typically show within 30–60 days. Review count increases are visible within weeks. Most clients see measurable impact by the end of month one.</p>
+        </div>
+      </div>
+      <!-- Q3 -->
+      <div class="reveal reveal-delay-2 faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">Is there a contract or minimum commitment?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">No contracts, no minimum commitment. We're month-to-month and you can cancel anytime. That said, local SEO compounds over time — the longer you're in, the stronger your position gets. Most clients stay because it works.</p>
+        </div>
+      </div>
+      <!-- Q4 -->
+      <div class="reveal reveal-delay-3 faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">What if I already have a Google listing?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">That's actually ideal. We start with what you have and optimize every field — description, categories, service areas, hours, photos, and more. Even a "complete" listing usually has major gaps we can fix to improve ranking significantly.</p>
+        </div>
+      </div>
+      <!-- Q5 -->
+      <div class="reveal reveal-delay-4 faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">How does the missed call text-back work technically?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">We set up a smart automation that detects when a call to your business goes unanswered. Within seconds, it fires a customized text message to the caller from your business number. Replies come back to a shared inbox you can check anytime — no app download required.</p>
+        </div>
+      </div>
+      <!-- Q6 -->
+      <div class="reveal faq-item rounded-2xl border border-navy/10 bg-white overflow-hidden cursor-pointer">
+        <button class="w-full flex items-center justify-between gap-4 p-6 text-left cursor-pointer" aria-expanded="false">
+          <span class="font-heading font-600 text-navy text-lg">Do you work with businesses outside Providence and Hartford?</span>
+          <span class="faq-icon flex-shrink-0 w-6 h-6 rounded-full border border-navy/15 flex items-center justify-center text-navy/50">
+            <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+        </button>
+        <div class="faq-answer px-6">
+          <p class="font-body text-navy/80 text-base leading-relaxed pb-6">We're currently focused on local businesses in Providence RI and Hartford CT so we can deliver truly hands-on, personal service. If you're nearby but outside those areas, reach out — we may still be able to help.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════ -->
+<section id="contact" class="bg-navy py-20 md:py-28 relative overflow-hidden">
+  <div class="absolute inset-0 opacity-5" aria-hidden="true"
+       style="background-image: radial-gradient(circle at 30% 70%, rgba(2,195,154,0.2) 0%, transparent 50%), radial-gradient(circle at 70% 30%, rgba(2,128,144,0.15) 0%, transparent 50%);">
+  </div>
+  <div class="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal text-center mb-12">
+      <span class="font-body text-mint font-500 text-sm tracking-widest uppercase mb-3 block">Get Started</span>
+      <h2 class="font-heading font-800 text-white mb-4" style="font-size: clamp(1.6rem, 3.5vw, 2.6rem); letter-spacing: -0.02em;">
+        Get your free Google audit
+      </h2>
+      <p class="font-body text-white/55 max-w-lg mx-auto">We'll analyze your current Google presence and show you exactly what's costing you customers — no pitch, no pressure.</p>
+    </div>
+
+    <form class="reveal reveal-delay-1 space-y-4" name="contact" method="POST" data-netlify="true" novalidate>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <label for="business-name" class="block font-body font-500 text-white/70 text-sm mb-2">Business name <span class="text-mint" aria-hidden="true">*</span></label>
+          <input type="text" id="business-name" name="business_name" required
+                 placeholder="Mike's Auto Repair"
+                 class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+        </div>
+        <div>
+          <label for="contact-name" class="block font-body font-500 text-white/70 text-sm mb-2">Your name <span class="text-mint" aria-hidden="true">*</span></label>
+          <input type="text" id="contact-name" name="name" required
+                 placeholder="Mike Johnson"
+                 class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+        </div>
+        <div>
+          <label for="phone" class="block font-body font-500 text-white/70 text-sm mb-2">Phone <span class="text-mint" aria-hidden="true">*</span></label>
+          <input type="tel" id="phone" name="phone" required
+                 placeholder="(401) 555-0100"
+                 class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+        </div>
+        <div>
+          <label for="email" class="block font-body font-500 text-white/70 text-sm mb-2">Email <span class="text-mint" aria-hidden="true">*</span></label>
+          <input type="email" id="email" name="email" required
+                 placeholder="mike@autorepair.com"
+                 class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
+                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
+                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+        </div>
+      </div>
+
+      <button type="submit"
+              class="w-full bg-mint hover:bg-mint-dark text-navy font-heading font-700 py-4 rounded-xl text-base transition-all duration-200 cursor-pointer flex items-center justify-center gap-2"
+              style="letter-spacing: -0.01em;"
+              onmouseover="this.style.boxShadow='0 8px 32px rgba(2,195,154,0.3)'"
+              onmouseout="this.style.boxShadow='none'">
+        Get my free audit
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <p class="font-body text-white/30 text-xs text-center">No spam. No sales pressure. Just an honest look at where you stand.</p>
+    </form>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer class="bg-navy border-t border-white/6 py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <!-- Brand -->
+      <div class="flex items-center gap-2">
+        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-mint to-teal flex items-center justify-center flex-shrink-0">
+          <svg class="w-3.5 h-3.5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <span class="font-heading font-700 text-white text-sm">Lead<span class="text-mint">Lock</span></span>
+      </div>
+
+      <!-- Links -->
+      <nav class="flex flex-wrap gap-6" aria-label="Footer navigation">
+        <a href="#services" class="font-body text-white/40 hover:text-white/80 text-sm transition-colors duration-200 cursor-pointer">Services</a>
+        <a href="#how-it-works" class="font-body text-white/40 hover:text-white/80 text-sm transition-colors duration-200 cursor-pointer">How It Works</a>
+        <a href="#pricing" class="font-body text-white/40 hover:text-white/80 text-sm transition-colors duration-200 cursor-pointer">Pricing</a>
+        <a href="#faq" class="font-body text-white/40 hover:text-white/80 text-sm transition-colors duration-200 cursor-pointer">FAQ</a>
+        <a href="#contact" class="font-body text-white/40 hover:text-white/80 text-sm transition-colors duration-200 cursor-pointer">Contact</a>
+      </nav>
+
+      <!-- Location + owner -->
+      <p class="font-body text-white/30 text-sm">
+        Drew Lewis &mdash; Providence RI &amp; Hartford CT
+      </p>
+    </div>
+
+    <div class="border-t border-white/6 mt-8 pt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+      <p class="font-body text-white/25 text-xs">&copy; 2026 LeadLock. All rights reserved.</p>
+      <p class="font-body text-white/20 text-xs">Lock in every lead. Rank on every search.</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════ -->
+<script>
+  // ─── Scroll reveal ──────────────────────────────────────────────────────────
+  (function() {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  })();
+
+  // ─── FAQ accordion ─────────────────────────────────────────────────────────
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn    = item.querySelector('button');
+    const answer = item.querySelector('.faq-answer');
+    const icon   = item.querySelector('.faq-icon');
+
+    btn.addEventListener('click', () => {
+      const isOpen = answer.classList.contains('open');
+
+      // Close all others
+      document.querySelectorAll('.faq-answer.open').forEach(a => {
+        a.classList.remove('open');
+        a.closest('.faq-item').querySelector('button').setAttribute('aria-expanded', 'false');
+        a.closest('.faq-item').querySelector('.faq-icon').classList.remove('rotated');
+      });
+
+      if (!isOpen) {
+        answer.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        icon.classList.add('rotated');
+      }
+    });
+  });
+
+  // ─── Smooth scroll for anchor links ────────────────────────────────────────
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href').slice(1);
+      const el = id ? document.getElementById(id) : null;
+      if (el) {
+        e.preventDefault();
+        const offset = 72; // sticky header height
+        const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ─── Header shrink on scroll ────────────────────────────────────────────────
+  (function() {
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.style.borderBottomColor = 'rgba(255,255,255,0.1)';
+      } else {
+        header.style.borderBottomColor = 'rgba(255,255,255,0.06)';
+      }
+    }, { passive: true });
+  })();
+</script>
+
+</body>
+</html>
