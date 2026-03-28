@@ -164,6 +164,14 @@
 
 <body class="bg-chalk text-navy antialiased">
 
+<!-- Source tooltip -->
+<div id="stat-tooltip" class="fixed z-50 pointer-events-none opacity-0 transition-opacity duration-200 max-w-xs"
+     style="background: #1A2332; border: 1px solid rgba(2,195,154,0.25); border-radius: 10px; padding: 10px 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
+  <p id="tooltip-source" class="font-body text-white/90 text-xs font-500 mb-1"></p>
+  <a id="tooltip-url" href="#" target="_blank" rel="noopener noreferrer"
+     class="font-body text-mint text-xs hover:underline pointer-events-auto truncate block" style="max-width: 220px;"></a>
+</div>
+
 <!-- Scroll progress bar -->
 <div id="scroll-progress" class="fixed top-0 left-0 z-[60] h-0.5" style="width:0%; background: linear-gradient(90deg, #02C39A, #028090); transition: width 0.1s linear;"></div>
 
@@ -300,19 +308,43 @@
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       <!-- Stat 1 -->
       <div class="reveal reveal-delay-1 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
-        <div class="stat-number mb-3" data-counter="87" data-suffix="%">0%</div>
+        <div class="relative inline-block mb-3">
+          <div class="stat-number" data-counter="87" data-suffix="%">0%</div>
+          <button class="stat-source absolute -top-1 -right-5 w-4 h-4 rounded-full flex items-center justify-center text-white/40 hover:text-teal transition-colors duration-200"
+                  data-source="BrightLocal — Local Consumer Review Survey"
+                  data-url="https://www.brightlocal.com/research/local-consumer-review-survey/"
+                  aria-label="View source">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+          </button>
+        </div>
         <p class="font-heading font-700 text-navy text-lg mb-2">Use Google to find local businesses</p>
         <p class="font-body text-navy/55 text-sm leading-relaxed">If you're not ranking, you're invisible to nearly 9 out of 10 potential customers in your area.</p>
       </div>
       <!-- Stat 2 -->
       <div class="reveal reveal-delay-2 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
-        <div class="stat-number mb-3" data-counter="62" data-suffix="%">0%</div>
+        <div class="relative inline-block mb-3">
+          <div class="stat-number" data-counter="62" data-suffix="%">0%</div>
+          <button class="stat-source absolute -top-1 -right-5 w-4 h-4 rounded-full flex items-center justify-center text-white/40 hover:text-teal transition-colors duration-200"
+                  data-source="411Locals — Small Business Owners Don't Answer 62% of Phone Calls"
+                  data-url="https://411locals.us/small-business-owners-dont-answer-62-of-phone-calls/"
+                  aria-label="View source">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-navy/30 hover:text-teal"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+          </button>
+        </div>
         <p class="font-heading font-700 text-navy text-lg mb-2">Of calls to local businesses go unanswered</p>
         <p class="font-body text-navy/55 text-sm leading-relaxed">More than half your phone leads hang up and call your competitor — and you never even know it happened.</p>
       </div>
       <!-- Stat 3 -->
       <div class="reveal reveal-delay-3 grad-border p-8 text-center cursor-default hover:-translate-y-1 transition-transform duration-200">
-        <div class="stat-number mb-3" data-counter="5" data-suffix=" min">0 min</div>
+        <div class="relative inline-block mb-3">
+          <div class="stat-number" data-counter="5" data-suffix=" min">0 min</div>
+          <button class="stat-source absolute -top-1 -right-5 w-4 h-4 rounded-full flex items-center justify-center text-white/40 hover:text-teal transition-colors duration-200"
+                  data-source="InsideSales — Response Time Matters"
+                  data-url="https://www.insidesales.com/response-time-matters/"
+                  aria-label="View source">
+            <svg viewBox="0 0 24 24" fill="currentColor" class="w-3.5 h-3.5 text-navy/30 hover:text-teal"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+          </button>
+        </div>
         <p class="font-heading font-700 text-navy text-lg mb-2">Before a lead goes cold</p>
         <p class="font-body text-navy/55 text-sm leading-relaxed">Response time is everything. After 5 minutes, your odds of converting that lead drop by over 80%.</p>
       </div>
@@ -1044,6 +1076,36 @@
         header.style.borderBottomColor = 'rgba(255,255,255,0.06)';
       }
     }, { passive: true });
+  })();
+
+  // ─── Stat source tooltips ───────────────────────────────────────────────────
+  (function() {
+    const tooltip = document.getElementById('stat-tooltip');
+    const tipSource = document.getElementById('tooltip-source');
+    const tipUrl    = document.getElementById('tooltip-url');
+
+    document.querySelectorAll('.stat-source').forEach(function(btn) {
+      btn.addEventListener('mouseenter', function(e) {
+        tipSource.textContent = btn.dataset.source;
+        tipUrl.textContent    = btn.dataset.url;
+        tipUrl.href           = btn.dataset.url;
+        tooltip.style.opacity = '1';
+        positionTooltip(e);
+      });
+      btn.addEventListener('mousemove', positionTooltip);
+      btn.addEventListener('mouseleave', function() {
+        tooltip.style.opacity = '0';
+      });
+    });
+
+    function positionTooltip(e) {
+      const x = e.clientX + 12;
+      const y = e.clientY + 12;
+      const tw = tooltip.offsetWidth  || 260;
+      const th = tooltip.offsetHeight || 60;
+      tooltip.style.left = (x + tw > window.innerWidth  ? e.clientX - tw - 8 : x) + 'px';
+      tooltip.style.top  = (y + th > window.innerHeight ? e.clientY - th - 8 : y) + 'px';
+    }
   })();
 
   // ─── Scroll progress bar ────────────────────────────────────────────────────
