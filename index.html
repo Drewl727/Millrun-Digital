@@ -849,19 +849,24 @@
           <label for="phone" class="block font-body font-500 text-white/70 text-sm mb-2">Phone <span class="text-mint" aria-hidden="true">*</span></label>
           <input type="tel" id="phone" name="phone" required
                  placeholder="(401) 555-0100"
+                 maxlength="14"
                  class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
-                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
-                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
-                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);" />
+          <p id="phone-error" class="hidden mt-1.5 text-xs font-body text-red-400 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            Please enter a valid 10-digit phone number.
+          </p>
         </div>
         <div>
           <label for="email" class="block font-body font-500 text-white/70 text-sm mb-2">Email <span class="text-mint" aria-hidden="true">*</span></label>
           <input type="email" id="email" name="email" required
                  placeholder="mike@autorepair.com"
                  class="w-full rounded-xl px-4 py-3 font-body text-sm text-white placeholder-white/25 outline-none transition-all duration-200"
-                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);"
-                 onfocus="this.style.borderColor='rgba(2,195,154,0.6)'; this.style.background='rgba(2,195,154,0.05)';"
-                 onblur="this.style.borderColor='rgba(255,255,255,0.1)'; this.style.background='rgba(255,255,255,0.06)';" />
+                 style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);" />
+          <p id="email-error" class="hidden mt-1.5 text-xs font-body text-red-400 flex items-center gap-1">
+            <svg class="w-3.5 h-3.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm1 14H11v-2h2v2zm0-4H11V7h2v5z"/></svg>
+            Please enter a valid email address.
+          </p>
         </div>
       </div>
 
@@ -980,6 +985,79 @@
         header.style.borderBottomColor = 'rgba(255,255,255,0.06)';
       }
     }, { passive: true });
+  })();
+
+  // ─── Phone auto-format & validation ────────────────────────────────────────
+  (function() {
+    const phoneInput = document.getElementById('phone');
+    const phoneError = document.getElementById('phone-error');
+    const emailInput = document.getElementById('email');
+    const emailError = document.getElementById('email-error');
+
+    function formatPhone(val) {
+      const digits = val.replace(/\D/g, '').slice(0, 10);
+      if (digits.length <= 3)  return digits.length ? '(' + digits : '';
+      if (digits.length <= 6)  return '(' + digits.slice(0,3) + ')-' + digits.slice(3);
+      return '(' + digits.slice(0,3) + ')-' + digits.slice(3,6) + '-' + digits.slice(6);
+    }
+
+    function setFieldState(input, error, isValid) {
+      if (isValid) {
+        input.style.borderColor = 'rgba(2,195,154,0.6)';
+        input.style.background  = 'rgba(2,195,154,0.05)';
+        error.classList.add('hidden');
+      } else {
+        input.style.borderColor = 'rgba(239,68,68,0.7)';
+        input.style.background  = 'rgba(239,68,68,0.05)';
+        error.classList.remove('hidden');
+      }
+    }
+
+    phoneInput.addEventListener('input', function() {
+      const cursor = this.selectionStart;
+      const prev = this.value.length;
+      this.value = formatPhone(this.value);
+      const delta = this.value.length - prev;
+      this.setSelectionRange(cursor + delta, cursor + delta);
+      phoneError.classList.add('hidden');
+      this.style.borderColor = 'rgba(2,195,154,0.6)';
+      this.style.background  = 'rgba(2,195,154,0.05)';
+    });
+
+    phoneInput.addEventListener('focus', function() {
+      phoneError.classList.add('hidden');
+      this.style.borderColor = 'rgba(2,195,154,0.6)';
+      this.style.background  = 'rgba(2,195,154,0.05)';
+    });
+
+    phoneInput.addEventListener('blur', function() {
+      const digits = this.value.replace(/\D/g, '');
+      const valid = digits.length === 10;
+      if (this.value === '') {
+        this.style.borderColor = 'rgba(255,255,255,0.1)';
+        this.style.background  = 'rgba(255,255,255,0.06)';
+        phoneError.classList.add('hidden');
+      } else {
+        setFieldState(this, phoneError, valid);
+      }
+    });
+
+    emailInput.addEventListener('focus', function() {
+      emailError.classList.add('hidden');
+      this.style.borderColor = 'rgba(2,195,154,0.6)';
+      this.style.background  = 'rgba(2,195,154,0.05)';
+    });
+
+    emailInput.addEventListener('blur', function() {
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value);
+      if (this.value === '') {
+        this.style.borderColor = 'rgba(255,255,255,0.1)';
+        this.style.background  = 'rgba(255,255,255,0.06)';
+        emailError.classList.add('hidden');
+      } else {
+        setFieldState(this, emailError, valid);
+      }
+    });
   })();
 </script>
 
