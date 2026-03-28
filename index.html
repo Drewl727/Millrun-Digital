@@ -165,7 +165,8 @@
 <body class="bg-chalk text-navy antialiased">
 
 <!-- Source tooltip -->
-<div id="stat-tooltip" class="fixed z-50 pointer-events-none opacity-0 transition-opacity duration-200 max-w-xs"
+<div id="stat-tooltip" class="fixed z-50 opacity-0 transition-opacity duration-200 max-w-xs"
+     style="pointer-events: none;"
      style="background: #1A2332; border: 1px solid rgba(2,195,154,0.25); border-radius: 10px; padding: 10px 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.4);">
   <p id="tooltip-source" class="font-body text-white/90 text-xs font-500 mb-1"></p>
   <a id="tooltip-url" href="#" target="_blank" rel="noopener noreferrer"
@@ -1083,20 +1084,33 @@
     const tooltip = document.getElementById('stat-tooltip');
     const tipSource = document.getElementById('tooltip-source');
     const tipUrl    = document.getElementById('tooltip-url');
+    let hideTimer = null;
+
+    function showTooltip(btn, e) {
+      clearTimeout(hideTimer);
+      tipSource.textContent = btn.dataset.source;
+      tipUrl.textContent    = btn.dataset.url;
+      tipUrl.href           = btn.dataset.url;
+      tooltip.style.opacity        = '1';
+      tooltip.style.pointerEvents  = 'auto';
+      positionTooltip(e);
+    }
+
+    function scheduleHide() {
+      hideTimer = setTimeout(function() {
+        tooltip.style.opacity       = '0';
+        tooltip.style.pointerEvents = 'none';
+      }, 120);
+    }
 
     document.querySelectorAll('.stat-source').forEach(function(btn) {
-      btn.addEventListener('mouseenter', function(e) {
-        tipSource.textContent = btn.dataset.source;
-        tipUrl.textContent    = btn.dataset.url;
-        tipUrl.href           = btn.dataset.url;
-        tooltip.style.opacity = '1';
-        positionTooltip(e);
-      });
-      btn.addEventListener('mousemove', positionTooltip);
-      btn.addEventListener('mouseleave', function() {
-        tooltip.style.opacity = '0';
-      });
+      btn.addEventListener('mouseenter', function(e) { showTooltip(btn, e); });
+      btn.addEventListener('mousemove',  positionTooltip);
+      btn.addEventListener('mouseleave', scheduleHide);
     });
+
+    tooltip.addEventListener('mouseenter', function() { clearTimeout(hideTimer); });
+    tooltip.addEventListener('mouseleave', scheduleHide);
 
     function positionTooltip(e) {
       const x = e.clientX + 12;
