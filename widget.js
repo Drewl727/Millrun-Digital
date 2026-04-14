@@ -16,8 +16,11 @@
   // ── Helpers ───────────────────────────────────────────────────────────────
 
   function isSummary(text) {
-    // Detect the final summary by looking for the "send this over" phrase
-    return /send this over|i have everything i need|i've got everything/i.test(text);
+    // Detect the final summary by matching multiple phrasings Claude might use
+    const triggerPhrases = /send this over|i have everything i need|i('ve| have) (got |collected |gathered )?(all |everything|all the)(information|details|info| i need)?|that('s| is) everything i need|let me send|i('ll| will) send this|i('ll| will) pass this (along|over|on)/i;
+    // Also detect by presence of a formatted summary block (labeled fields)
+    const hasSummaryBlock = /business name[\s\S]{0,30}:/i.test(text) && /phone[\s\S]{0,30}:/i.test(text);
+    return triggerPhrases.test(text) || hasSummaryBlock;
   }
 
   function scrollToBottom() {

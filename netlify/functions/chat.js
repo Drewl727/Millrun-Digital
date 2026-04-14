@@ -47,7 +47,7 @@ If a client says they don't have a Google Business Profile, acknowledge it and m
 
 If a client mentions missing a lot of calls, acknowledge the problem and connect it to the missed call text-back and AI receptionist services.
 
-After all 10 are collected, say something like "Perfect, I have everything I need. Let me send this over to the LeadLock team." Then output a clearly formatted summary with all 10 fields labeled. Do not ask any more questions after this point.`;
+After all 10 are collected, you MUST start your response with exactly this phrase: "Perfect, I have everything I need. Let me send this over to the LeadLock team." Then immediately output a clearly formatted summary with all 10 fields labeled (e.g. "Business Name: ...", "Owner: ...", etc.). Do not ask any more questions after this point.`;
 
 exports.handler = async function (event) {
   const headers = {
