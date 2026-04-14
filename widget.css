@@ -272,4 +272,9 @@
     height: 70vh;
     max-height: 520px;
   }
+
+  /* Prevent iOS from zooming in when tapping the input */
+  #ll-chat-input {
+    font-size: 16px;
+  }
 }

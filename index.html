@@ -171,7 +171,7 @@
     #back-to-top {
       position: fixed;
       bottom: 2rem;
-      right: 2rem;
+      left: 2rem;
       z-index: 40;
       width: 44px;
       height: 44px;
@@ -200,7 +200,7 @@
     #back-to-top::before {
       content: 'Back to top';
       position: absolute;
-      right: calc(100% + 10px);
+      left: calc(100% + 10px);
       top: 50%;
       transform: translateY(-50%);
       background: #1A2332;
@@ -277,6 +277,11 @@
       <a href="#contact" class="mobile-nav-link mt-2 inline-flex items-center justify-center gap-2 bg-mint hover:bg-mint-dark text-navy font-heading font-600 text-sm px-4 py-2.5 rounded-lg transition-colors duration-200">
         Get Free Audit
       </a>
+      <button onclick="openLeadLockChat(); document.getElementById('mobile-menu').classList.remove('open'); document.getElementById('hamburger-btn').classList.remove('open'); document.getElementById('hamburger-btn').setAttribute('aria-expanded','false');"
+              class="mt-1 inline-flex items-center justify-center gap-2 border border-white/20 hover:border-mint text-white/80 hover:text-mint font-heading font-600 text-sm px-4 py-2.5 rounded-lg transition-colors duration-200 cursor-pointer w-full">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        Talk to an Advisor
+      </button>
     </nav>
   </div>
 </header>
@@ -323,12 +328,12 @@
           <path d="M5 12h14M12 5l7 7-7 7"/>
         </svg>
       </a>
-      <a href="#services" class="inline-flex items-center gap-2 text-white/70 hover:text-white font-body text-sm transition-colors duration-200 cursor-pointer">
-        See how it works
+      <button onclick="openLeadLockChat()" class="inline-flex items-center gap-2 border border-white/25 hover:border-mint text-white/80 hover:text-mint font-body text-sm px-6 py-4 rounded-xl transition-all duration-200 cursor-pointer">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M19 9l-7 7-7-7"/>
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
         </svg>
-      </a>
+        Chat with an Advisor
+      </button>
     </div>
 
     <!-- Tagline badge -->
@@ -596,6 +601,31 @@
           </li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════
+     ADVISOR CTA STRIP
+═══════════════════════════════════════════════ -->
+<section class="bg-navy py-14">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal rounded-2xl p-8 md:p-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6"
+         style="background: linear-gradient(135deg, rgba(2,195,154,0.1) 0%, rgba(2,128,144,0.08) 100%); border: 1px solid rgba(2,195,154,0.22);">
+      <div>
+        <p class="font-heading font-700 text-white text-xl mb-1">Not sure where to start?</p>
+        <p class="font-body text-white/70 text-base">Talk to one of our advisors — we'll show you exactly where you're losing customers.</p>
+      </div>
+      <button onclick="openLeadLockChat()"
+              class="flex-shrink-0 inline-flex items-center gap-2 bg-mint hover:bg-mint-dark text-navy font-heading font-700 px-6 py-3.5 rounded-xl text-sm transition-all duration-200 cursor-pointer whitespace-nowrap"
+              onmouseover="this.style.boxShadow='0 6px 24px rgba(2,195,154,0.35)'"
+              onmouseout="this.style.boxShadow='none'">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        Talk to an Advisor
+      </button>
     </div>
   </div>
 </section>

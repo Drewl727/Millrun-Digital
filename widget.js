@@ -4,7 +4,7 @@
   var FORMSPREE_URL = "https://formspree.io/f/xzdkdgwe";
   var CHAT_ENDPOINT = "https://heroic-semifreddo-ac06a2.netlify.app/.netlify/functions/chat";
   var OPENING_MESSAGE =
-    "Hi! I'm the LeadLock onboarding assistant. I'll collect a few details to get your account set up. Let's start — what's your business name and your name?";
+    "Hi! I'm your LeadLock advisor. I'll ask a few quick questions to understand your business, then we'll put together a custom plan. Let's start — what's your business name, and who am I speaking with?";
 
   var messages = [];
   var isLoading = false;
@@ -213,8 +213,8 @@
     header.innerHTML =
       '<div class="ll-header-dot"></div>' +
       '<div id="ll-chat-header-text">' +
-        '<h3>LeadLock Onboarding</h3>' +
-        '<p class="ll-subtitle">Online now</p>' +
+        '<h3>LeadLock Advisor</h3>' +
+        '<p class="ll-subtitle">Available now</p>' +
       "</div>" +
       '<button id="ll-chat-close" aria-label="Close chat">' +
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>' +
@@ -251,7 +251,7 @@
     // Toggle button
     var toggle = document.createElement("button");
     toggle.id = "ll-chat-toggle";
-    toggle.setAttribute("aria-label", "Open LeadLock onboarding chat");
+    toggle.setAttribute("aria-label", "Chat with a LeadLock advisor");
     toggle.setAttribute("aria-expanded", "false");
     toggle.innerHTML =
       '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
@@ -295,4 +295,7 @@
   } else {
     buildWidget();
   }
+
+  // Public API — lets page CTAs open the chat
+  window.openLeadLockChat = openChat;
 })();
