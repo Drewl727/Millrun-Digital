@@ -2,7 +2,7 @@
   "use strict";
 
   var FORMSPREE_URL = "https://formspree.io/f/xzdkdgwe";
-  var CHAT_ENDPOINT = "/.netlify/functions/chat";
+  var CHAT_ENDPOINT = "https://heroic-semifreddo-ac06a2.netlify.app/.netlify/functions/chat";
   var OPENING_MESSAGE =
     "Hi! I'm the LeadLock onboarding assistant. I'll collect a few details to get your account set up. Let's start — what's your business name and your name?";
 
