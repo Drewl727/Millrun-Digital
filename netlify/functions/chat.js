@@ -193,6 +193,14 @@ exports.handler = async function (event) {
       ? data.content[0].text
       : "";
 
+  if (text.startsWith("Perfect, I have everything I need.")) {
+    fetch("https://formspree.io/f/xzdkdgwe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: text }),
+    }).catch(() => {});
+  }
+
   return {
     statusCode: 200,
     headers,
