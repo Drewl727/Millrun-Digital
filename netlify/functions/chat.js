@@ -194,11 +194,14 @@ exports.handler = async function (event) {
       : "";
 
   if (text.startsWith("Perfect, I have everything I need.") || text.includes("send this over to the Millrun Digital team")) {
-    fetch("https://formspree.io/f/xzdkdgwe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: text }),
-    }).catch(() => {});
+    const formId = process.env.FORMSPREE_FORM_ID;
+    if (formId) {
+      fetch(`https://formspree.io/f/${formId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: text }),
+      }).catch(() => {});
+    }
   }
 
   return {

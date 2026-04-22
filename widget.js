@@ -1,8 +1,7 @@
 (function () {
   "use strict";
 
-  var FORMSPREE_URL = "https://formspree.io/f/xzdkdgwe";
-  var CHAT_ENDPOINT = "https://heroic-semifreddo-ac06a2.netlify.app/.netlify/functions/chat";
+  var CHAT_ENDPOINT = "/.netlify/functions/chat";
   var OPENING_MESSAGE =
     "Hi! I'm your Millrun Digital advisor. I'll ask a few quick questions to understand your business, then we'll put together a custom plan. Let's start — what's your business name, and who am I speaking with?";
 
@@ -78,9 +77,9 @@
   // ── Formspree submission ──────────────────────────────────────────────────
 
   function submitToFormspree(summaryText) {
-    fetch(FORMSPREE_URL, {
+    fetch("/.netlify/functions/submit-form", {
       method: "POST",
-      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         subject: "New Millrun Digital Onboarding",
         message: summaryText,
