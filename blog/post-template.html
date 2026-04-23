@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!--
+  ═══════════════════════════════════════════════════════════════
+  MILLRUN BLOG POST TEMPLATE — fill every REPLACE before publishing
+
+  SETUP:
+  1. Create folder: /blog/your-post-slug/
+  2. Copy this file → /blog/your-post-slug/index.html
+  3. Fill in all REPLACE WITH placeholders below
+  4. Write your content in the .post-body section
+  5. Add a card to /blog/index.html (top of the grid, newest first)
+  6. Add entry to sitemap.xml
+  7. Push → Netlify auto-deploys
+
+  PATH NOTE:
+  This template is written for /blog/SLUG/index.html.
+  The widget.js path (../../widget.js) goes up two levels to root.
+  If you put this file at /blog/index.html instead, change to ../widget.js.
+  ═══════════════════════════════════════════════════════════════
+  -->
+
+  <!-- [1] Title — 50-60 chars including primary keyword -->
+  <title>REPLACE WITH POST TITLE | Millrun Digital</title>
+
+  <!-- [2] Meta description — 145-155 chars, keyword + benefit + hook -->
+  <meta name="description" content="REPLACE WITH META DESCRIPTION. Include your primary keyword. End with a clear benefit or hook for the reader. Aim for 145-155 characters total." />
+
+  <meta name="robots" content="index, follow" />
+
+  <!-- [3] Canonical — exact URL of this page, no trailing variations -->
+  <link rel="canonical" href="https://millrundigital.com/blog/YOUR-POST-SLUG/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Millrun Digital" />
+  <!-- [4] --> <meta property="og:title" content="REPLACE WITH POST TITLE" />
+  <!-- [5] --> <meta property="og:description" content="REPLACE WITH META DESCRIPTION" />
+  <!-- [6] --> <meta property="og:image" content="https://millrundigital.com/blog/YOUR-POST-SLUG/og-image.jpg" />
+               <meta property="og:image:width" content="1200" />
+               <meta property="og:image:height" content="630" />
+               <meta property="og:url" content="https://millrundigital.com/blog/YOUR-POST-SLUG/" />
+               <meta property="og:locale" content="en_US" />
+               <meta property="article:published_time" content="2026-04-22T00:00:00Z" />
+               <meta property="article:author" content="Drew Lewis" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="REPLACE WITH POST TITLE" />
+  <meta name="twitter:description" content="REPLACE WITH META DESCRIPTION" />
+  <meta name="twitter:image" content="https://millrundigital.com/blog/YOUR-POST-SLUG/og-image.jpg" />
+
+  <!-- [7-8] Article schema — most important SEO schema for blog posts -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "REPLACE WITH POST TITLE",
+    "description": "REPLACE WITH META DESCRIPTION",
+    "image": "https://millrundigital.com/blog/YOUR-POST-SLUG/og-image.jpg",
+    "datePublished": "2026-04-22T00:00:00Z",
+    "dateModified": "2026-04-22T00:00:00Z",
+    "author": {
+      "@type": "Person",
+      "name": "Drew Lewis",
+      "url": "https://millrundigital.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Millrun Digital",
+      "url": "https://millrundigital.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://millrundigital.com/millrun-digital-logo.png"
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://millrundigital.com/blog/YOUR-POST-SLUG/"
+    }
+  }
+  </script>
+
+  <!-- Breadcrumb schema — Google shows this in search results -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://millrundigital.com" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://millrundigital.com/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "REPLACE WITH POST TITLE", "item": "https://millrundigital.com/blog/YOUR-POST-SLUG/" }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #F5EFE3;
+      --warm-white:   #FBF8F2;
+      --charcoal:     #1D1912;
+      --charcoal-mid: #2E2920;
+      --charcoal-soft:#3D3629;
+      --amber:        #C97B38;
+      --amber-dark:   #A86228;
+      --amber-light:  #E8A96A;
+      --stone:        #524A42;
+      --stone-light:  #9E9389;
+      --border:       rgba(125,114,104,0.22);
+      --border-dark:  rgba(255,255,255,0.09);
+    }
+
+    html { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--warm-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(29,25,18,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-mark { width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+    .logo-text { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; letter-spacing:-0.01em; }
+    .logo-text span { color: var(--amber); }
+
+    nav.desktop { display:flex; align-items:center; gap:1.75rem; }
+    nav.desktop a { font-size:15px; color:rgba(255,255,255,0.75); text-decoration:none; font-weight:500; transition:color 0.15s; }
+    nav.desktop a:hover { color:#fff; }
+    nav.desktop a.active { color:#fff; }
+
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:6px;
+      background: var(--amber); color: var(--charcoal);
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.875rem;
+      padding:0.6rem 1.25rem; border-radius:6px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:var(--charcoal-mid); }
+    .mobile-nav.open { max-height:400px; }
+    .mobile-nav a { display:block; padding:0.75rem 2rem; font-size:0.9rem; color:rgba(255,255,255,0.75); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .mobile-nav a:hover { color:#fff; }
+    .mobile-nav .mobile-cta { display:block; margin:1rem 2rem; }
+
+    @media(max-width:768px){ nav.desktop,.header-cta { display:none!important; } .hamburger{ display:flex; } }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+
+    /* ─── POST HERO ─── */
+    .post-hero {
+      background: var(--cream);
+      border-bottom: 1px solid var(--border);
+      padding: 108px 2rem 3.5rem;
+    }
+    .post-hero-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .post-breadcrumb {
+      font-size: 0.8rem;
+      color: var(--stone-light);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .post-breadcrumb a {
+      color: var(--stone-light);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .post-breadcrumb a:hover { color: var(--amber); }
+    .post-breadcrumb-sep { opacity: 0.4; }
+
+    .post-category {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber-dark);
+      background: rgba(201,123,56,0.1);
+      border: 1px solid rgba(201,123,56,0.25);
+      border-radius: 4px;
+      padding: 0.25rem 0.65rem;
+      margin-bottom: 1.25rem;
+    }
+
+    /* [9] One H1 per page — contains primary keyword */
+    .post-hero h1 {
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      color: var(--charcoal);
+      margin-bottom: 1.25rem;
+    }
+
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .post-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.8rem;
+      color: var(--stone-light);
+    }
+    .post-meta-item svg { color: var(--stone-light); flex-shrink: 0; }
+
+    /* ─── POST BODY ─── */
+    .post-body-wrap {
+      background: var(--warm-white);
+      padding: 3.5rem 2rem 5rem;
+    }
+    .post-body {
+      max-width: 720px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--charcoal);
+    }
+
+    .post-body p { margin-bottom: 1.4rem; }
+
+    .post-body h2 {
+      font-size: 1.6rem;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+      color: var(--charcoal);
+    }
+
+    .post-body h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--charcoal);
+    }
+
+    .post-body ul, .post-body ol {
+      margin: 0 0 1.4rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .post-body li {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .post-body ul li::marker { color: var(--amber); }
+    .post-body ol li::marker { color: var(--amber); font-weight: 700; }
+
+    .post-body strong { font-weight: 700; color: var(--charcoal); }
+
+    .post-body a {
+      color: var(--amber-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .post-body a:hover { color: var(--amber); }
+
+    /* Callout — for key stats or important insights */
+    .callout {
+      background: var(--cream);
+      border-left: 3px solid var(--amber);
+      border-radius: 0 8px 8px 0;
+      padding: 1.25rem 1.5rem;
+      margin: 2.25rem 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--charcoal);
+    }
+    .callout strong { color: var(--amber-dark); }
+
+    /* Divider */
+    .post-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 3rem 0;
+    }
+
+    /* ─── POST CTA ─── */
+    .post-cta-wrap {
+      background: var(--charcoal);
+      padding: 3rem 2rem;
+    }
+    .post-cta {
+      max-width: 720px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .post-cta-left h3 {
+      color: #fff;
+      font-size: 1.5rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+    .post-cta-left p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      max-width: 380px;
+    }
+    .btn-amber-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--amber);
+      color: var(--charcoal);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.875rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-amber-cta:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    /* ─── RELATED POSTS ─── */
+    .related-wrap {
+      background: var(--cream);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem 4rem;
+    }
+    .related-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .related-inner h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--stone-light);
+      margin-bottom: 1.5rem;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .related-card {
+      background: var(--warm-white);
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      transition: background 0.15s;
+    }
+    .related-card:hover { background: #fff; }
+    .related-tag {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+    }
+    .related-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1rem;
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+    }
+    @media(max-width:600px){ .related-grid { grid-template-columns: 1fr; } }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--charcoal-mid); border-top:1px solid var(--border-dark); padding:3rem 2rem; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+    .footer-logo { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; }
+    .footer-logo span { color:var(--amber); }
+    .footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
+    .footer-links a { font-size:0.875rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.15s; }
+    .footer-links a:hover { color:#fff; }
+    .footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.3); }
+
+    /* ─── BACK TO TOP ─── */
+    #back-to-top {
+      position: fixed; bottom: 96px; right: 24px; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--charcoal); border: 1px solid rgba(201,123,56,0.4);
+      color: var(--amber); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.2s ease, background 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--amber); color: var(--charcoal); transform: translateY(-2px); }
+    @media(max-width:480px){ #back-to-top { bottom: 88px; right: 16px; } }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header id="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="#C97B38" stroke-width="2"/>
+          <circle cx="14" cy="14" r="3" fill="#C97B38"/>
+          <line x1="14" y1="2" x2="14" y2="8" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="20" x2="14" y2="26" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="2" y1="14" x2="8" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="14" x2="26" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="5.5" y1="5.5" x2="9.75" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18.25" y1="18.25" x2="22.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="22.5" y1="5.5" x2="18.25" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9.75" y1="18.25" x2="5.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Millrun <span>Digital</span></span>
+    </a>
+    <nav class="desktop">
+      <a href="/#services">Services</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/about.html">About</a>
+      <a href="/blog/" class="active">Blog</a>
+    </nav>
+    <a href="/#contact" class="btn-primary header-cta">Get Free Audit →</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/#services">Services</a>
+    <a href="/#how-it-works">How It Works</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/about.html">About</a>
+    <a href="/blog/">Blog</a>
+    <div class="mobile-cta"><a href="/#contact" class="btn-primary" style="justify-content:center">Get Free Audit →</a></div>
+  </div>
+</header>
+
+<!-- ── POST HERO ── -->
+<section class="post-hero">
+  <div class="post-hero-inner">
+
+    <!-- Breadcrumb — update "Post title" to match your H1 -->
+    <nav class="post-breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="post-breadcrumb-sep">›</span>
+      <a href="/blog/">Blog</a>
+      <span class="post-breadcrumb-sep">›</span>
+      <span>REPLACE WITH SHORT POST TITLE</span>
+    </nav>
+
+    <!-- Category tag -->
+    <span class="post-category">REPLACE WITH CATEGORY (e.g. AI Automation)</span>
+
+    <!-- [9] ONE H1 per page — include your primary keyword naturally -->
+    <h1>REPLACE WITH YOUR POST TITLE THAT INCLUDES THE PRIMARY KEYWORD</h1>
+
+    <div class="post-meta">
+      <div class="post-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        April 22, 2026
+      </div>
+      <div class="post-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        6 min read
+      </div>
+      <div class="post-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Drew Lewis
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── POST BODY ── -->
+<div class="post-body-wrap">
+  <article class="post-body">
+
+    <!--
+    ════════════════════════════════════════
+    PASTE YOUR BLOG CONTENT BELOW THIS LINE
+
+    WRITING TIPS FOR LOCAL BUSINESS SEO:
+    - Primary keyword in first 100 words, naturally
+    - H2s should be benefit-driven and specific ("How to X" not "Section 2")
+    - Keep paragraphs short — 3-4 sentences max (owners skim on mobile)
+    - Use the .callout block for key stats or pull quotes
+    - Link to at least one other blog post or service page
+    - End with a natural mention of Millrun Digital
+    ════════════════════════════════════════
+    -->
+
+    <p>Opening paragraph — your primary keyword should appear naturally within the first 100 words. Start with a pain point, a surprising stat, or a direct statement that tells the reader exactly what they're getting. No fluff intro.</p>
+
+    <h2>Section Heading Two</h2>
+
+    <p>Body copy. Keep paragraphs short — 3 to 4 sentences max. Small business owners read this on their phone between jobs. Get to the point.</p>
+
+    <p>Second paragraph under this H2. Expand the idea but don't pad it out.</p>
+
+    <h2>Section Heading Two</h2>
+
+    <p>Body copy.</p>
+
+    <!-- Callout block — use for a key stat, important rule, or pull quote -->
+    <div class="callout">
+      <strong>Key stat:</strong> The callout block is perfect for a number that anchors your argument — something a skimmer will stop on and read. Make it specific.
+    </div>
+
+    <h2>Section Heading Two</h2>
+
+    <p>Body copy.</p>
+
+    <ul>
+      <li>Tip or step one — keep it tight, one idea per bullet</li>
+      <li>Tip or step two</li>
+      <li>Tip or step three</li>
+    </ul>
+
+    <h2>Section Heading Two</h2>
+
+    <p>Body copy. If you're referencing another post, <a href="/blog/OTHER-POST-SLUG/">link to it here</a> — internal links help both SEO and reader flow.</p>
+
+    <hr class="post-divider" />
+
+    <h2>The Bottom Line</h2>
+
+    <p>Wrap it up in 2-3 sentences. Restate the key takeaway. Make it easy for the reader to know what to do next. Natural mention of Millrun Digital helping businesses implement this without the technical overhead.</p>
+
+    <!--
+    ════════════════════════════════════════
+    END OF BLOG CONTENT
+    ════════════════════════════════════════
+    -->
+
+  </article>
+</div>
+
+<!-- ── POST CTA ── -->
+<div class="post-cta-wrap">
+  <div class="post-cta reveal">
+    <div class="post-cta-left">
+      <h3>Ready to put this into action?</h3>
+      <p>Millrun Digital sets up the systems — AI automation, Google optimization, review generation — so your business captures more leads without you doing the work.</p>
+    </div>
+    <a href="/#contact" class="btn-amber-cta">Get a free audit →</a>
+  </div>
+</div>
+
+<!-- ── RELATED POSTS ── -->
+<div class="related-wrap">
+  <div class="related-inner">
+    <h3>Keep reading</h3>
+    <div class="related-grid">
+      <!-- Update both cards with real post slugs and titles -->
+      <a class="related-card" href="/blog/RELATED-POST-SLUG/">
+        <span class="related-tag">Category</span>
+        <span class="related-title">Related post title goes here — keep it punchy</span>
+      </a>
+      <a class="related-card" href="/blog/RELATED-POST-SLUG-2/">
+        <span class="related-tag">Category</span>
+        <span class="related-title">Related post title goes here — keep it punchy</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Millrun <span>Digital</span></div>
+      <div class="footer-copy" style="margin-top:0.4rem;">© 2026 Millrun Digital. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/#services">Services</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/about.html">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <div class="footer-copy">Drew Lewis · Providence RI &amp; Hartford CT</div>
+  </div>
+</footer>
+
+<!-- ── BACK TO TOP ── -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<!-- widget.js is two levels up from /blog/SLUG/index.html -->
+<script src="../../widget.js"></script>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const ham = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { ham.classList.remove('open'); mobileNav.classList.remove('open'); });
+  });
+
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { backBtn.classList.toggle('visible', window.scrollY > 400); });
+  backBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+
+</body>
+</html>

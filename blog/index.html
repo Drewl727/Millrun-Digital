@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Blog | Millrun Digital — AI & Marketing Tips for Local Businesses</title>
+  <meta name="description" content="Practical guides on AI automation, local SEO, and digital marketing for small business owners in Providence RI and Hartford CT. No fluff — just strategies that drive more calls and customers." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://millrundigital.com/blog/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Millrun Digital" />
+  <meta property="og:url" content="https://millrundigital.com/blog/" />
+  <meta property="og:title" content="Blog | Millrun Digital — AI & Marketing Tips for Local Businesses" />
+  <meta property="og:description" content="Practical guides on AI automation, local SEO, and digital marketing for small business owners." />
+  <meta property="og:image" content="https://millrundigital.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog | Millrun Digital" />
+  <meta name="twitter:description" content="Practical guides on AI, automation, and local marketing — written for small business owners, not tech people." />
+  <meta name="twitter:image" content="https://millrundigital.com/og-image.png" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Millrun Digital Blog",
+    "url": "https://millrundigital.com/blog/",
+    "description": "Practical guides on AI automation, local SEO, and digital marketing for small business owners.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "Millrun Digital",
+      "url": "https://millrundigital.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://millrundigital.com/millrun-digital-logo.png"
+      }
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #F5EFE3;
+      --warm-white:   #FBF8F2;
+      --charcoal:     #1D1912;
+      --charcoal-mid: #2E2920;
+      --charcoal-soft:#3D3629;
+      --amber:        #C97B38;
+      --amber-dark:   #A86228;
+      --amber-light:  #E8A96A;
+      --stone:        #524A42;
+      --stone-light:  #9E9389;
+      --border:       rgba(125,114,104,0.22);
+      --border-dark:  rgba(255,255,255,0.09);
+    }
+
+    html { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--warm-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(29,25,18,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-mark { width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+    .logo-text { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; letter-spacing:-0.01em; }
+    .logo-text span { color: var(--amber); }
+
+    nav.desktop { display:flex; align-items:center; gap:1.75rem; }
+    nav.desktop a { font-size:15px; color:rgba(255,255,255,0.75); text-decoration:none; font-weight:500; transition:color 0.15s; }
+    nav.desktop a:hover { color:#fff; }
+    nav.desktop a.active { color:#fff; }
+
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:6px;
+      background: var(--amber); color: var(--charcoal);
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.875rem;
+      padding:0.6rem 1.25rem; border-radius:6px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:var(--charcoal-mid); }
+    .mobile-nav.open { max-height:400px; }
+    .mobile-nav a { display:block; padding:0.75rem 2rem; font-size:0.9rem; color:rgba(255,255,255,0.75); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .mobile-nav a:hover { color:#fff; }
+    .mobile-nav .mobile-cta { display:block; margin:1rem 2rem; }
+
+    @media(max-width:768px){ nav.desktop,.header-cta { display:none!important; } .hamburger{ display:flex; } }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+
+    /* ─── SECTION UTILITIES ─── */
+    .section-label {
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
+      font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+      color: var(--amber); margin-bottom:1rem; display:block;
+    }
+
+    /* ─── BLOG HERO ─── */
+    .blog-hero {
+      background: var(--cream);
+      padding: 120px 2rem 4rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .blog-hero-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .blog-hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--charcoal);
+    }
+    .blog-hero h1 em { font-style: italic; color: var(--amber); }
+    .blog-hero-desc {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--stone);
+      line-height: 1.7;
+      max-width: 440px;
+    }
+    .blog-hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding-bottom: 0.25rem;
+    }
+    .blog-category-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--stone);
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .blog-category-pill:hover,
+    .blog-category-pill.active { border-color: var(--amber); color: var(--amber); }
+
+    /* ─── BLOG GRID SECTION ─── */
+    .blog-section {
+      padding: 4rem 2rem 6rem;
+      background: var(--warm-white);
+    }
+    .blog-container { max-width: 1280px; margin: 0 auto; }
+
+    /* Featured post */
+    .post-featured {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      text-decoration: none;
+      color: var(--charcoal);
+      margin-bottom: 2rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .post-featured:hover {
+      border-color: var(--amber);
+      box-shadow: 0 8px 32px rgba(201,123,56,0.1);
+    }
+    .post-featured-content {
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    .post-featured-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .post-featured-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber-dark);
+      background: rgba(201,123,56,0.12);
+      border: 1px solid rgba(201,123,56,0.25);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+    }
+    .post-featured h2 {
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+    }
+    .post-featured-excerpt {
+      color: var(--stone);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .post-featured-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .post-meta-text {
+      font-size: 0.8rem;
+      color: var(--stone-light);
+    }
+    .post-read-link {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: gap 0.15s;
+    }
+    .post-featured:hover .post-read-link { gap: 0.65rem; }
+    .post-featured-visual {
+      background: var(--charcoal);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      min-height: 280px;
+    }
+    .post-visual-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(201,123,56,0.15);
+      border: 1px solid rgba(201,123,56,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--amber);
+    }
+
+    /* Regular post grid */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .post-card {
+      background: var(--warm-white);
+      padding: 2rem;
+      text-decoration: none;
+      color: var(--charcoal);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: background 0.2s;
+      position: relative;
+    }
+    .post-card:hover { background: #fff; }
+    .post-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 2rem; right: 2rem;
+      height: 2px;
+      background: var(--amber);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+    .post-card:hover::after { transform: scaleX(1); }
+    .post-tag {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+    }
+    .post-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.2rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+    .post-excerpt {
+      font-size: 0.875rem;
+      color: var(--stone);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .post-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.25rem;
+    }
+    .post-date { font-size: 0.75rem; color: var(--stone-light); }
+    .post-arrow { font-size: 0.8rem; color: var(--amber); font-weight: 700; opacity: 0; transition: opacity 0.15s; }
+    .post-card:hover .post-arrow { opacity: 1; }
+
+    /* Empty state card */
+    .post-card--coming {
+      background: var(--warm-white);
+      border: none;
+      opacity: 0.45;
+      cursor: default;
+      pointer-events: none;
+    }
+    .post-card--coming::after { display: none; }
+    .coming-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--stone-light);
+      border: 1px dashed var(--border);
+      border-radius: 4px;
+      padding: 0.2rem 0.6rem;
+      display: inline-block;
+    }
+
+    @media(max-width:900px){
+      .post-grid { grid-template-columns: 1fr 1fr; }
+      .post-featured { grid-template-columns: 1fr; }
+      .post-featured-visual { display: none; }
+    }
+    @media(max-width:600px){
+      .post-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CTA STRIP ─── */
+    .blog-cta-strip {
+      background: var(--charcoal);
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .blog-cta-strip-inner { max-width: 600px; margin: 0 auto; }
+    .blog-cta-strip h2 { color: #fff; font-size: clamp(1.75rem, 3.5vw, 2.5rem); letter-spacing: -0.02em; margin-bottom: 1rem; }
+    .blog-cta-strip p { color: rgba(255,255,255,0.55); font-size: 0.95rem; line-height: 1.7; margin-bottom: 2rem; }
+    .btn-amber { background: var(--amber); color: var(--charcoal); font-weight: 700; font-size: 0.95rem; padding: 0.85rem 2rem; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: background 0.15s, transform 0.1s; }
+    .btn-amber:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--charcoal-mid); border-top:1px solid var(--border-dark); padding:3rem 2rem; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+    .footer-logo { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; }
+    .footer-logo span { color:var(--amber); }
+    .footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
+    .footer-links a { font-size:0.875rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.15s; }
+    .footer-links a:hover { color:#fff; }
+    .footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.3); }
+
+    /* ─── BACK TO TOP ─── */
+    #back-to-top {
+      position: fixed; bottom: 96px; right: 24px; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--charcoal); border: 1px solid rgba(201,123,56,0.4);
+      color: var(--amber); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.2s ease, background 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--amber); color: var(--charcoal); transform: translateY(-2px); }
+    @media(max-width:480px){ #back-to-top { bottom: 88px; right: 16px; } }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header id="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="#C97B38" stroke-width="2"/>
+          <circle cx="14" cy="14" r="3" fill="#C97B38"/>
+          <line x1="14" y1="2" x2="14" y2="8" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="20" x2="14" y2="26" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="2" y1="14" x2="8" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="14" x2="26" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="5.5" y1="5.5" x2="9.75" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18.25" y1="18.25" x2="22.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="22.5" y1="5.5" x2="18.25" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9.75" y1="18.25" x2="5.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Millrun <span>Digital</span></span>
+    </a>
+    <nav class="desktop">
+      <a href="/#services">Services</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/about.html">About</a>
+      <a href="/blog/" class="active">Blog</a>
+    </nav>
+    <a href="/#contact" class="btn-primary header-cta">Get Free Audit →</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="/#services">Services</a>
+    <a href="/#how-it-works">How It Works</a>
+    <a href="/#faq">FAQ</a>
+    <a href="/about.html">About</a>
+    <a href="/blog/">Blog</a>
+    <div class="mobile-cta"><a href="/#contact" class="btn-primary" style="justify-content:center">Get Free Audit →</a></div>
+  </div>
+</header>
+
+<!-- ── BLOG HERO ── -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <div class="reveal">
+      <span class="section-label">The Blog</span>
+      <h1>Local business<br>tips that actually<br><em>work.</em></h1>
+      <p class="blog-hero-desc">AI, automation, and local SEO — written for shop owners and tradespeople, not tech people. No jargon. Just what moves the needle.</p>
+    </div>
+    <div class="blog-hero-right reveal reveal-delay-1">
+      <span style="font-size:0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--stone-light); margin-bottom:0.25rem;">Topics</span>
+      <a href="/blog/#ai-automation" class="blog-category-pill">AI Automation</a>
+      <a href="/blog/#local-seo" class="blog-category-pill">Local SEO</a>
+      <a href="/blog/#lead-capture" class="blog-category-pill">Lead Capture</a>
+      <a href="/blog/#google-business" class="blog-category-pill">Google Business Profile</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── BLOG GRID ── -->
+<section class="blog-section">
+  <div class="blog-container">
+
+    <!--
+      HOW TO ADD A POST:
+      1. Create /blog/your-post-slug/ folder, copy post-template.html → index.html
+      2. Fill in all REPLACE placeholders
+      3. Add a card here at the TOP (newest first)
+      4. Update sitemap.xml with the new URL
+      5. Push to GitHub → Netlify auto-deploys
+    -->
+
+    <!-- ── FEATURED POST — most recent ── -->
+    <a class="post-featured reveal" id="ai-automation" href="/blog/missed-call-text-back/">
+      <div class="post-featured-content">
+        <div>
+          <div class="post-featured-label">
+            <span class="post-featured-badge">AI Automation</span>
+          </div>
+          <h2 style="margin-top:1.25rem;">Why Every Missed Call Is Costing Your Business $300+</h2>
+          <p class="post-featured-excerpt" style="margin-top:1rem;">Most small businesses lose 30–40% of inbound calls to voicemail. Here's exactly what that costs you in lost revenue — and how AI text-back turns those missed calls into booked jobs before the lead calls your competitor.</p>
+        </div>
+        <div class="post-featured-meta">
+          <span class="post-meta-text">April 22, 2026 &middot; 6 min read</span>
+          <span class="post-read-link">Read article →</span>
+        </div>
+      </div>
+      <div class="post-featured-visual">
+        <div class="post-visual-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6z"/>
+          </svg>
+        </div>
+      </div>
+    </a>
+
+    <!-- ── POST GRID ── -->
+    <div class="post-grid" id="local-seo">
+
+      <!-- Post 2 -->
+      <a class="post-card reveal" href="/blog/google-business-profile-tips/" id="google-business">
+        <span class="post-tag">Local SEO</span>
+        <div class="post-title">5 Google Business Profile Fixes That Drive More Calls This Week</div>
+        <div class="post-excerpt">Your GBP is the first thing customers see. These five quick changes can double your call rate without spending a dollar on ads.</div>
+        <div class="post-footer">
+          <span class="post-date">April 15, 2026 &middot; 5 min</span>
+          <span class="post-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Coming soon cards — replace as you publish -->
+      <div class="post-card post-card--coming reveal reveal-delay-1">
+        <span class="coming-label">Coming Soon</span>
+        <div class="post-title" style="color:var(--stone-light);">How to Get 50 New Reviews Without Asking Awkwardly</div>
+        <div class="post-excerpt">The automated follow-up sequence that turns happy customers into 5-star reviews on autopilot.</div>
+        <div class="post-footer"><span class="post-date">Google Business Profile</span></div>
+      </div>
+
+      <div class="post-card post-card--coming reveal reveal-delay-2">
+        <span class="coming-label">Coming Soon</span>
+        <div class="post-title" style="color:var(--stone-light);">The $0 Marketing Stack Every Local Business Needs</div>
+        <div class="post-excerpt">Free tools that cover Google ranking, lead capture, and review generation before you spend a cent on ads.</div>
+        <div class="post-footer"><span class="post-date">Lead Capture</span></div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ── CTA STRIP ── -->
+<section class="blog-cta-strip">
+  <div class="blog-cta-strip-inner reveal">
+    <span class="section-label" style="color:var(--amber-light); justify-content:center; display:block;">Ready to act on this?</span>
+    <h2>Get a free Google audit</h2>
+    <p>We'll analyze your Google presence and show you exactly where you're losing customers — for free, no pitch, no pressure.</p>
+    <a href="/#contact" class="btn-amber">Request your free audit →</a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Millrun <span>Digital</span></div>
+      <div class="footer-copy" style="margin-top:0.4rem;">© 2026 Millrun Digital. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="/#services">Services</a>
+      <a href="/#how-it-works">How It Works</a>
+      <a href="/#faq">FAQ</a>
+      <a href="/about.html">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="/#contact">Contact</a>
+    </div>
+    <div class="footer-copy">Drew Lewis · Providence RI &amp; Hartford CT</div>
+  </div>
+</footer>
+
+<!-- ── BACK TO TOP ── -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script src="../widget.js"></script>
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const ham = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { ham.classList.remove('open'); mobileNav.classList.remove('open'); });
+  });
+
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { backBtn.classList.toggle('visible', window.scrollY > 400); });
+  backBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+
+</body>
+</html>
