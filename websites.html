@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Website Design & Development for Local Businesses | Millrun Digital</title>
+  <meta name="description" content="Millrun Digital builds fast, mobile-first websites for local businesses in Providence RI and Hartford CT — designed to rank on Google, load in seconds, and turn visitors into calls." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://millrundigital.com/websites.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Millrun Digital" />
+  <meta property="og:url" content="https://millrundigital.com/websites.html" />
+  <meta property="og:title" content="Website Design & Development for Local Businesses | Millrun Digital" />
+  <meta property="og:description" content="Millrun Digital builds fast, mobile-first websites for local businesses in Providence RI and Hartford CT — designed to rank on Google, load in seconds, and turn visitors into calls." />
+  <meta property="og:image" content="https://millrundigital.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Millrun Digital — Website Design for Local Businesses" />
+  <meta property="og:locale" content="en_US" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JZNGJ1P3WV"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-JZNGJ1P3WV');</script>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:        #F5EFE3;
+      --warm-white:   #FBF8F2;
+      --charcoal:     #1D1912;
+      --charcoal-mid: #2E2920;
+      --charcoal-soft:#3D3629;
+      --amber:        #C97B38;
+      --amber-dark:   #A86228;
+      --amber-light:  #E8A96A;
+      --stone:        #524A42;
+      --stone-light:  #9E9389;
+      --border:       rgba(125,114,104,0.22);
+      --border-dark:  rgba(255,255,255,0.09);
+    }
+
+    html { font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--warm-white); color: var(--charcoal); -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4 { font-family: 'DM Serif Display', serif; font-weight: 400; }
+
+    /* ─── HEADER ─── */
+    #site-header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+      background: rgba(29,25,18,0.94);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    .header-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 0 2rem; height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+    .logo-mark { width:32px; height:32px; display:flex; align-items:center; justify-content:center; }
+    .logo-text { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; letter-spacing:-0.01em; }
+    .logo-text span { color: var(--amber); }
+
+    nav.desktop { display:flex; align-items:center; gap:1.75rem; }
+    nav.desktop a { font-size:15px; color:rgba(255,255,255,0.75); text-decoration:none; font-weight:500; transition:color 0.15s; }
+    nav.desktop a:hover { color:#fff; }
+    nav.desktop a.active { color: var(--amber-light); }
+
+    .btn-primary {
+      display:inline-flex; align-items:center; gap:6px;
+      background: var(--amber); color: var(--charcoal);
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.875rem;
+      padding:0.6rem 1.25rem; border-radius:6px;
+      text-decoration:none; border:none; cursor:pointer;
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-primary:hover { background: var(--amber-dark); transform: translateY(-1px); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .hamburger span { display:block; width:22px; height:2px; background:#fff; border-radius:2px; transition: transform 0.3s, opacity 0.3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav { max-height:0; overflow:hidden; transition:max-height 0.35s ease; background:var(--charcoal-mid); }
+    .mobile-nav.open { max-height:400px; }
+    .mobile-nav a { display:block; padding:0.75rem 2rem; font-size:0.9rem; color:rgba(255,255,255,0.75); text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.05); }
+    .mobile-nav a:hover { color:#fff; }
+    .mobile-nav .mobile-cta { display:block; margin:1rem 2rem; }
+
+    @media(max-width:768px){ nav.desktop,.header-cta { display:none!important; } .hamburger{ display:flex; } }
+
+    /* ─── REVEAL ─── */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity 0.65s ease, transform 0.65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+    .reveal-delay-1 { transition-delay:0.1s; }
+    .reveal-delay-2 { transition-delay:0.2s; }
+    .reveal-delay-3 { transition-delay:0.3s; }
+    .reveal-delay-4 { transition-delay:0.4s; }
+
+    /* ─── SECTIONS ─── */
+    .section { padding: 6rem 2rem; }
+    .container { max-width:1280px; margin:0 auto; }
+    .section-label {
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:600;
+      font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+      color: var(--amber); margin-bottom:1rem; display:block;
+    }
+    .section-label.dark { color: var(--amber-light); }
+
+    /* ─── HERO ─── */
+    #hero { background: var(--warm-white); padding-top: 120px; padding-bottom: 0; overflow: hidden; }
+    .hero-inner {
+      max-width:1280px; margin:0 auto; padding: 0 2rem;
+      display:grid; grid-template-columns: 1fr 420px;
+      gap: 4rem; align-items: end; padding-bottom: 5rem;
+    }
+    .hero-headline { font-size: clamp(3.2rem, 6.5vw, 6.5rem); line-height: 1.0; letter-spacing: -0.03em; color: var(--charcoal); }
+    .hero-headline em { font-style:italic; color: var(--amber); }
+    .hero-sub { margin-top: 2rem; font-size: 20px; color: rgb(46,45,41); line-height: 1.65; max-width: 480px; font-weight:400; }
+    .hero-actions { display:flex; align-items:center; gap:1rem; margin-top:2.5rem; flex-wrap:wrap; }
+    .hero-actions .btn-primary { font-size:1rem; padding:0.85rem 1.75rem; background:var(--charcoal); color:var(--cream); }
+    .hero-actions .btn-primary:hover { background: var(--charcoal-soft); }
+    .hero-actions .btn-ghost-warm {
+      font-size:1rem; font-weight:500; padding:0.85rem 1.75rem;
+      border:1.5px solid var(--border); border-radius:6px;
+      color:var(--stone); background:transparent; cursor:pointer;
+      transition: border-color 0.15s, color 0.15s;
+      font-family:'Plus Jakarta Sans',sans-serif;
+    }
+    .hero-actions .btn-ghost-warm:hover { border-color: var(--amber); color: var(--amber); }
+    .hero-right { display: flex; flex-direction: column; gap: 1.25rem; padding-bottom: 1rem; }
+    .hero-stat-card { background: var(--cream); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+    .hero-stat-card .num { font-family:'DM Serif Display',serif; font-size: 3rem; line-height:1; color: var(--charcoal); }
+    .hero-stat-card .num span { color: var(--amber); }
+    .hero-stat-card p { font-size:0.875rem; color:var(--stone); margin-top:0.4rem; line-height:1.5; }
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(201,123,56,0.12); border:1px solid rgba(201,123,56,0.25);
+      color:var(--amber-dark); border-radius:999px;
+      font-size:0.8rem; font-weight:600; padding:0.45rem 1rem; margin-bottom: 1.5rem;
+    }
+    .hero-badge-dot { width:7px; height:7px; border-radius:50%; background:var(--amber); }
+    .hero-divider { height:4px; background:var(--charcoal); width:60px; margin: 1rem 0; }
+
+    @media(max-width:900px){
+      .hero-inner { grid-template-columns:1fr; gap:3rem; }
+      .hero-right { flex-direction:row; flex-wrap:wrap; }
+      .hero-stat-card { flex:1; min-width:160px; }
+    }
+
+    /* ─── WHAT WE BUILD ─── */
+    #what-we-build { background: var(--cream); }
+    .services-header { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:end; margin-bottom:4rem; }
+    .services-header h2 { font-size: clamp(2rem,4vw,3.25rem); line-height:1.1; letter-spacing:-0.02em; color: rgb(46,45,41); }
+    .services-header p { color: rgb(46,45,41); line-height:1.7; font-size:1rem; }
+    .services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .service-card { background:var(--warm-white); padding:2.5rem; transition:background 0.2s; }
+    .service-card:hover { background: #fff; }
+    .service-icon { width:44px; height:44px; border-radius:8px; background: rgba(201,123,56,0.12); border:1px solid rgba(201,123,56,0.2); display:flex; align-items:center; justify-content:center; margin-bottom:1.5rem; color:var(--amber); }
+    .service-card h3 { font-size:1.4rem; margin-bottom:0.75rem; letter-spacing:-0.01em; }
+    .service-card > p { color:var(--stone); font-size:0.9rem; line-height:1.65; margin-bottom:1.5rem; }
+    .service-list { list-style:none; display:flex; flex-direction:column; gap:0.75rem; }
+    .service-list li { display:flex; align-items:baseline; gap:0.6rem; font-size:15px; color:var(--charcoal); line-height:1.5; }
+    .service-list li::before { content:'—'; color:var(--amber); flex-shrink:0; font-weight:700; }
+    @media(max-width:900px){ .services-grid { grid-template-columns:1fr; } .services-header { grid-template-columns:1fr; } }
+
+    /* ─── WHAT'S INCLUDED ─── */
+    #whats-included { background: var(--warm-white); }
+    .included-header { margin-bottom: 4rem; }
+    .included-header h2 { font-size:clamp(2rem,4vw,3.25rem); letter-spacing:-0.02em; max-width:600px; }
+    .included-header p { color:var(--stone); margin-top:1rem; max-width:500px; line-height:1.7; }
+    .included-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5px; background:var(--border); border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .included-card { background:var(--warm-white); padding:2rem; display:flex; flex-direction:column; gap:0.75rem; transition:background 0.2s; }
+    .included-card:hover { background:#fff; }
+    .included-icon { width:36px; height:36px; border-radius:8px; background:rgba(201,123,56,0.1); border:1px solid rgba(201,123,56,0.18); display:flex; align-items:center; justify-content:center; color:var(--amber); flex-shrink:0; }
+    .included-card h4 { font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:0.95rem; color:var(--charcoal); }
+    .included-card p { font-size:0.875rem; color:var(--stone); line-height:1.6; }
+    @media(max-width:900px){ .included-grid { grid-template-columns:1fr 1fr; } }
+    @media(max-width:560px){ .included-grid { grid-template-columns:1fr; } }
+
+    /* ─── HOW IT WORKS ─── */
+    #how-it-works { background: var(--cream); }
+    .hiw-header { margin-bottom:4rem; }
+    .hiw-header h2 { font-size:clamp(2rem,4vw,3.25rem); letter-spacing:-0.02em; max-width:600px; }
+    .hiw-header p { color:var(--stone); margin-top:1rem; max-width:500px; line-height:1.7; }
+    .hiw-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+    .hiw-step { padding:2.5rem 2rem; border-right:1px solid var(--border); background:var(--warm-white); }
+    .hiw-step:last-child { border-right:none; }
+    .step-num { font-family:'DM Serif Display',serif; font-size:3.5rem; line-height:1; color:var(--stone-light); margin-bottom:1.25rem; }
+    .step-week { font-size:13px; font-weight:700; text-transform:uppercase; letter-spacing:0.12em; color: rgb(46,45,41); margin-bottom:0.5rem; }
+    .hiw-step h3 { font-size:1.15rem; margin-bottom:0.75rem; letter-spacing:-0.01em; }
+    .hiw-step p { font-size:0.875rem; color:var(--stone); line-height:1.65; }
+    @media(max-width:900px){ .hiw-steps { grid-template-columns:1fr 1fr; } .hiw-step { border-bottom:1px solid var(--border); } }
+    @media(max-width:560px){ .hiw-steps { grid-template-columns:1fr; } }
+
+    /* ─── BEFORE / AFTER ─── */
+    #before-after { background: var(--charcoal); }
+    .ba-header { text-align:center; margin-bottom:3.5rem; }
+    .ba-header h2 { color:#fff; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; }
+    .ba-header p { color:rgba(255,255,255,0.65); margin-top:0.75rem; font-size:15px; }
+    .ba-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:rgba(255,255,255,0.08); border-radius:12px; overflow:hidden; }
+    .ba-col { padding:2.5rem; }
+    .ba-col.before { background:#221C14; }
+    .ba-col.after { background:var(--charcoal-mid); }
+    .ba-col-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:2rem; }
+    .ba-col-header .tag { font-size:13px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; padding:0.3rem 0.75rem; border-radius:4px; }
+    .ba-col.before .tag { background:rgba(239,68,68,0.15); color:#f87171; }
+    .ba-col.after .tag { background:rgba(201,123,56,0.15); color:var(--amber-light); }
+    .ba-list { list-style:none; display:flex; flex-direction:column; gap:1rem; }
+    .ba-list li { display:flex; align-items:start; gap:0.75rem; font-size:0.9rem; line-height:1.6; }
+    .ba-col.before .ba-list li { color: rgb(240,236,237); }
+    .ba-col.after .ba-list li { color: rgb(221,221,221); }
+    .ba-dot { width:18px; height:18px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+    .ba-col.before .ba-dot { background:rgba(239,68,68,0.15); }
+    .ba-col.after .ba-dot { background:rgba(201,123,56,0.18); }
+    @media(max-width:768px){ .ba-grid { grid-template-columns:1fr; } }
+
+    /* ─── FAQ ─── */
+    #faq { background: var(--warm-white); }
+    .faq-layout { display:grid; grid-template-columns:1fr 2fr; gap:4rem; align-items:start; }
+    .faq-list { display:flex; flex-direction:column; }
+    .faq-item { border-top:1px solid var(--border); }
+    .faq-question {
+      width:100%; text-align:left; background:none; border:none; cursor:pointer;
+      padding:1.5rem 0; display:flex; justify-content:space-between; align-items:center; gap:1rem;
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:600; font-size:1rem;
+      color:var(--charcoal); transition:color 0.15s;
+    }
+    .faq-question:hover { color:var(--amber); }
+    .faq-icon { font-size:1.25rem; font-weight:300; flex-shrink:0; transition:transform 0.3s; line-height:1; color:var(--stone); }
+    .faq-icon.open { transform:rotate(45deg); color:var(--amber); }
+    .faq-answer { max-height:0; overflow:hidden; transition:max-height 0.35s ease, padding 0.35s ease; }
+    .faq-answer.open { max-height:400px; padding-bottom:1.5rem; }
+    .faq-answer p { color:var(--stone); font-size:0.9rem; line-height:1.75; max-width:600px; }
+    @media(max-width:768px){ .faq-layout { grid-template-columns:1fr; } }
+
+    /* ─── CTA ─── */
+    #cta { background: var(--charcoal); text-align:center; }
+    #cta h2 { color:#fff; font-size:clamp(2rem,4vw,3rem); letter-spacing:-0.02em; margin-bottom:1rem; }
+    #cta p { color:rgba(255,255,255,0.5); margin-bottom:2.5rem; font-size:1rem; max-width:480px; margin-left:auto; margin-right:auto; }
+    .cta-btn {
+      display:inline-flex; align-items:center; gap:8px;
+      background:var(--amber); color:var(--charcoal);
+      font-family:'Plus Jakarta Sans',sans-serif; font-weight:700; font-size:1rem;
+      padding:0.9rem 2rem; border-radius:8px; text-decoration:none;
+      transition: background 0.15s, transform 0.1s;
+      box-shadow: 0 8px 32px rgba(201,123,56,0.25);
+    }
+    .cta-btn:hover { background:var(--amber-dark); transform:translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer { background: var(--charcoal-mid); border-top:1px solid var(--border-dark); padding:3rem 2rem; }
+    .footer-inner { max-width:1280px; margin:0 auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:2rem; }
+    .footer-logo { font-family:'DM Serif Display',serif; font-size:1.25rem; color:#fff; }
+    .footer-logo span { color:var(--amber); }
+    .footer-links { display:flex; gap:2rem; flex-wrap:wrap; }
+    .footer-links a { font-size:0.875rem; color:rgba(255,255,255,0.45); text-decoration:none; transition:color 0.15s; }
+    .footer-links a:hover { color:#fff; }
+    .footer-copy { font-size:0.8rem; color:rgba(255,255,255,0.3); }
+
+    /* ─── BACK TO TOP ─── */
+    #back-to-top {
+      position: fixed; bottom: 96px; right: 24px; z-index: 9998;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--charcoal); border: 1px solid rgba(201,123,56,0.4);
+      color: var(--amber); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.2s ease, background 0.15s;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    #back-to-top.visible { opacity: 1; pointer-events: auto; }
+    #back-to-top:hover { background: var(--amber); color: var(--charcoal); transform: translateY(-2px); }
+    @media(max-width:480px){ #back-to-top { bottom: 88px; right: 16px; } }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header id="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="14" cy="14" r="12" stroke="#C97B38" stroke-width="2"/>
+          <circle cx="14" cy="14" r="3" fill="#C97B38"/>
+          <line x1="14" y1="2" x2="14" y2="8" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="14" y1="20" x2="14" y2="26" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="2" y1="14" x2="8" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="20" y1="14" x2="26" y2="14" stroke="#C97B38" stroke-width="2" stroke-linecap="round"/>
+          <line x1="5.5" y1="5.5" x2="9.75" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="18.25" y1="18.25" x2="22.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="22.5" y1="5.5" x2="18.25" y2="9.75" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="9.75" y1="18.25" x2="5.5" y2="22.5" stroke="#C97B38" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <span class="logo-text">Millrun <span>Digital</span></span>
+    </a>
+    <nav class="desktop">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="websites.html" class="active">Websites</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="https://scheduler.zoom.us/drew-lewis-iikya8" target="_blank" rel="noopener">Book a Call</a>
+    </nav>
+    <a href="index.html#contact" class="btn-primary header-cta">Get Free Audit →</a>
+    <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="index.html#services">Services</a>
+    <a href="index.html#how-it-works">How It Works</a>
+    <a href="websites.html">Websites</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="about.html">About</a>
+    <a href="/blog/">Blog</a>
+    <a href="https://scheduler.zoom.us/drew-lewis-iikya8" target="_blank" rel="noopener">Book a Call with Andrew</a>
+    <div class="mobile-cta"><a href="index.html#contact" class="btn-primary" style="justify-content:center">Get Free Audit →</a></div>
+  </div>
+</header>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="reveal">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Website Design &amp; Development
+        </div>
+      </div>
+      <h1 class="hero-headline reveal reveal-delay-1">
+        A website that<br>
+        works as hard<br>
+        <em>as you do.</em>
+      </h1>
+      <div class="hero-divider reveal reveal-delay-2"></div>
+      <p class="hero-sub reveal reveal-delay-2">
+        Most local business websites look fine and do nothing. We build sites that rank on Google, load in under 2 seconds, and turn visitors into booked appointments — not just browser tabs.
+      </p>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="index.html#contact" class="btn-primary">Get a free website audit →</a>
+        <a href="https://scheduler.zoom.us/drew-lewis-iikya8" target="_blank" rel="noopener" class="btn-ghost-warm">Book a call with Andrew →</a>
+      </div>
+    </div>
+    <div class="hero-right reveal reveal-delay-2">
+      <div class="hero-stat-card">
+        <div class="num">53<span>%</span></div>
+        <p>of mobile visitors leave a site that takes more than 3 seconds to load — before reading a single word.</p>
+      </div>
+      <div class="hero-stat-card">
+        <div class="num">75<span>%</span></div>
+        <p>of people judge a business's credibility based on its website design alone.</p>
+      </div>
+      <div class="hero-stat-card">
+        <div class="num">2<span>×</span></div>
+        <p>more calls from Google for businesses with a properly optimized website alongside their GBP listing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT WE BUILD ── -->
+<section id="what-we-build" class="section">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <span class="section-label">What We Build</span>
+        <h2>Three types of sites. All built to convert.</h2>
+      </div>
+      <p>Whether you need a full business site or a single focused page, everything we build is fast, local-SEO-ready, and connected to your lead capture system from day one.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <h3>Local Business Website</h3>
+        <p>A full multi-page site built around your services, location, and customers — with every page optimized to rank.</p>
+        <ul class="service-list">
+          <li>Home, Services, About, Contact pages</li>
+          <li>Google Business Profile integration</li>
+          <li>Click-to-call &amp; contact form</li>
+          <li>Mobile-first responsive design</li>
+          <li>Hosting + ongoing maintenance</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h3>Landing Page</h3>
+        <p>One focused page for a specific service, ad campaign, or promotion — built to capture leads, not just traffic.</p>
+        <ul class="service-list">
+          <li>Single conversion-focused layout</li>
+          <li>Lead form or booking integration</li>
+          <li>Fast turnaround — live in days</li>
+          <li>A/B-ready structure</li>
+          <li>Connected to your CRM pipeline</li>
+        </ul>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <h3>Website + SEO Bundle</h3>
+        <p>The full package — site and local SEO working together from launch so you're ranking while the ink is still wet.</p>
+        <ul class="service-list">
+          <li>Everything in Local Business Website</li>
+          <li>Google Business Profile optimization</li>
+          <li>Local keyword targeting built in</li>
+          <li>Schema markup &amp; metadata</li>
+          <li>Monthly SEO management included</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── WHAT'S INCLUDED ── -->
+<section id="whats-included" class="section">
+  <div class="container">
+    <div class="included-header reveal">
+      <span class="section-label">Every Build Includes</span>
+      <h2>No corners cut. No add-on fees.</h2>
+      <p>Everything below comes standard — not as an upsell.</p>
+    </div>
+    <div class="included-grid">
+      <div class="included-card reveal">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        </div>
+        <h4>Mobile-First Design</h4>
+        <p>Built for phones first. Over 60% of local search happens on mobile — your site will look and perform perfectly on every screen size.</p>
+      </div>
+      <div class="included-card reveal reveal-delay-1">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <h4>Local SEO Structure</h4>
+        <p>Proper page titles, meta descriptions, schema markup, and URL structure — so Google understands exactly who you are and where you serve.</p>
+      </div>
+      <div class="included-card reveal reveal-delay-2">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4>Speed Optimized</h4>
+        <p>Compressed images, clean code, and no bloated plugins. Sites load in under 2 seconds so visitors stay — and Google ranks you higher.</p>
+      </div>
+      <div class="included-card reveal reveal-delay-3">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.6a16 16 0 0 0 6 6z"/></svg>
+        </div>
+        <h4>Click-to-Call &amp; Lead Forms</h4>
+        <p>Every page has a clear path to contact — prominent phone numbers, tap-to-call on mobile, and forms that route directly into your lead pipeline.</p>
+      </div>
+      <div class="included-card reveal reveal-delay-4">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <h4>Google Business Profile Connected</h4>
+        <p>Your website and GBP listing working in sync — consistent NAP data, linked reviews, and matching service areas for maximum local visibility.</p>
+      </div>
+      <div class="included-card reveal reveal-delay-1">
+        <div class="included-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h4>Hosting &amp; Maintenance</h4>
+        <p>Fast, secure hosting included. We handle updates, security, and uptime so you never have to think about it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOW IT WORKS ── -->
+<section id="how-it-works" class="section">
+  <div class="container">
+    <div class="hiw-header reveal">
+      <span class="section-label">The Timeline</span>
+      <h2>From kickoff to live site<br>in under 3 weeks.</h2>
+      <p>A clear process with no surprises. You'll know exactly what's happening at every stage.</p>
+    </div>
+    <div class="hiw-steps">
+      <div class="hiw-step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-week">Week 1 — Discovery</div>
+        <h3>We Learn Your Business</h3>
+        <p>We gather everything we need — your services, service area, photos, and goals. You fill out a simple brief; we handle the rest. No endless back-and-forth.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-week">Week 1–2 — Design</div>
+        <h3>You See It Before We Build It</h3>
+        <p>We deliver a full visual mockup. You approve the look, layout, and copy before a single line of code is written. One round of revisions included.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-3">
+        <div class="step-num">03</div>
+        <div class="step-week">Week 2–3 — Build &amp; Launch</div>
+        <h3>Built, Tested, and Live</h3>
+        <p>We build the approved design, connect your forms and CRM, test across devices, and push it live. You get a walkthrough before the site goes public.</p>
+      </div>
+      <div class="hiw-step reveal reveal-delay-4">
+        <div class="step-num">04</div>
+        <div class="step-week">Ongoing — Updates &amp; SEO</div>
+        <h3>We Keep It Growing</h3>
+        <p>Monthly content updates, performance monitoring, and local SEO adjustments. Your site improves over time — not just on launch day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BEFORE / AFTER ── -->
+<section id="before-after" class="section">
+  <div class="container">
+    <div class="ba-header reveal">
+      <span class="section-label dark">The Difference</span>
+      <h2>Without a proper site vs. With one</h2>
+      <p>A website should be your hardest-working salesperson — not a digital business card collecting dust.</p>
+    </div>
+    <div class="ba-grid reveal reveal-delay-1">
+      <div class="ba-col before">
+        <div class="ba-col-header"><span class="tag">Before</span></div>
+        <ul class="ba-list">
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Outdated site that loads slowly and looks broken on mobile</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>No SEO — invisible on Google beyond your business name</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Phone number buried — visitors can't figure out how to reach you</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>No contact form — leads have nowhere to go after hours</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Loses credibility the moment a customer looks you up</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>Disconnected from your GBP — ranking signals split and wasted</li>
+        </ul>
+      </div>
+      <div class="ba-col after">
+        <div class="ba-col-header"><span class="tag">After</span></div>
+        <ul class="ba-list">
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Fast, modern site that looks sharp on every device</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Ranking for local service searches — showing up when it counts</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Click-to-call on every page — one tap from visitor to booked job</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Lead forms routing straight into your CRM — no leads fall through</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Builds trust before they even pick up the phone</li>
+          <li><div class="ba-dot"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#E8A96A" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>Synced with your GBP — both signals reinforcing each other</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq" class="section">
+  <div class="container">
+    <div class="faq-layout">
+      <div>
+        <span class="section-label">FAQ</span>
+        <h2 style="font-size:clamp(2rem,3.5vw,2.75rem); letter-spacing:-0.02em; line-height:1.1;">Common questions</h2>
+        <div style="height:1px; background:var(--border); margin:1.5rem 0;"></div>
+        <p style="color:var(--stone); line-height:1.7; font-size:0.9rem;">Don't see your question? <a href="index.html#contact" style="color:var(--amber); font-weight:600;">Reach out directly →</a></p>
+      </div>
+      <div class="faq-list" id="faq-list"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section id="cta" class="section reveal">
+  <h2>Ready for a site that actually brings in business?</h2>
+  <p>Book a free audit and we'll show you exactly what your current web presence is costing you — and how to fix it.</p>
+  <a href="index.html#contact" class="cta-btn">
+    Get my free website audit
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+  </a>
+  <p style="margin-top:1.5rem; font-size:0.9rem;">
+    Prefer to talk first? <a href="https://scheduler.zoom.us/drew-lewis-iikya8" target="_blank" rel="noopener" style="color:var(--amber-light); font-weight:600;">Book a call with Andrew →</a>
+  </p>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Millrun <span>Digital</span></div>
+      <div class="footer-copy" style="margin-top:0.4rem;">© 2026 Millrun Digital. All rights reserved.</div>
+    </div>
+    <div class="footer-links">
+      <a href="index.html#services">Services</a>
+      <a href="index.html#how-it-works">How It Works</a>
+      <a href="websites.html">Websites</a>
+      <a href="index.html#faq">FAQ</a>
+      <a href="about.html">About</a>
+      <a href="/blog/">Blog</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://scheduler.zoom.us/drew-lewis-iikya8" target="_blank" rel="noopener">Book a Call</a>
+    </div>
+    <div class="footer-copy">Drew Lewis · Providence RI &amp; Hartford CT</div>
+  </div>
+</footer>
+
+<!-- ── BACK TO TOP ── -->
+<button id="back-to-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  const ham = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
+  ham.addEventListener('click', () => { ham.classList.toggle('open'); mobileNav.classList.toggle('open'); });
+  mobileNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => { ham.classList.remove('open'); mobileNav.classList.remove('open'); });
+  });
+
+  const faqs = [
+    { q: 'Do I need to provide content and photos?', a: 'Not necessarily. We can write copy based on your brief and source relevant stock photography. If you have photos of your team, shop, or work — great, we\'ll use them. They always perform better than stock.' },
+    { q: 'How long does the whole process take?', a: 'Typically 2–3 weeks from kickoff to launch. Landing pages can be live in under a week. The timeline is mostly determined by how quickly we can get your feedback on the design mockup.' },
+    { q: 'What if I already have a website?', a: 'We can audit your existing site and either redesign it or rebuild it from scratch. We\'ll tell you honestly whether it needs a full rebuild or just targeted improvements.' },
+    { q: 'Will you maintain the site after launch?', a: 'Yes — hosting, security updates, and maintenance are included. If you\'re on a monthly plan with us, content updates are included too. You never have to touch the backend.' },
+    { q: 'Is a website included in your monthly plans?', a: 'Website development is priced separately, but it integrates seamlessly with our monthly SEO and lead capture plans. Many clients bundle them for maximum impact from day one.' },
+    { q: 'What platform do you build on?', a: 'We build on the right platform for your needs — typically custom HTML/CSS for speed and simplicity, or a lightweight CMS if you need to manage content yourself. We don\'t lock you into bloated page builders.' },
+  ];
+  const faqList = document.getElementById('faq-list');
+  faqs.forEach((faq, i) => {
+    faqList.innerHTML += `<div class="faq-item"><button class="faq-question" onclick="toggleFaq(${i})">${faq.q}<span class="faq-icon" id="faq-icon-${i}">+</span></button><div class="faq-answer" id="faq-answer-${i}"><p>${faq.a}</p></div></div>`;
+  });
+  function toggleFaq(i) {
+    document.getElementById('faq-answer-' + i).classList.toggle('open');
+    document.getElementById('faq-icon-' + i).classList.toggle('open');
+  }
+
+  const backBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => { backBtn.classList.toggle('visible', window.scrollY > 400); });
+  backBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Website Design & Development",
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "Millrun Digital",
+    "url": "https://millrundigital.com"
+  },
+  "description": "Fast, mobile-first website design and development for local businesses in Providence RI and Hartford CT — built to rank on Google and convert visitors into leads.",
+  "areaServed": [
+    {"@type": "City", "name": "Hartford"},
+    {"@type": "City", "name": "Providence"}
+  ]
+}
+</script>
+</body>
+</html>
