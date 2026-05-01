@@ -726,9 +726,9 @@
     const form = e.target;
     btn.textContent = 'Sending...';
     btn.disabled = true;
-    fetch('/.netlify/functions/submit-form', {
+    fetch('https://formspree.io/f/xzdkdgwe', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
       body: JSON.stringify({
         firstName: form.firstName.value,
         lastName: form.lastName.value,
